@@ -1,56 +1,15 @@
-import { Link } from "@heroui/link";
-import { Snippet } from "@heroui/snippet";
-import { Code } from "@heroui/code";
-import { button as buttonStyles } from "@heroui/theme";
+import Carrousel from "@/components/images/components/Carrousel";
 
-import { siteConfig } from "@/config/site";
-import { title, subtitle } from "@/components/primitives";
-import { GithubIcon } from "@/components/icons";
-
-export default function Home() {
+export default function HomePage() {
   return (
-    <section className="flex flex-col items-center justify-center gap-4 py-8 md:py-10">
-      <div className="inline-block max-w-xl text-center justify-center">
-        <span className={title()}>Make&nbsp;</span>
-        <span className={title({ color: "violet" })}>beautiful&nbsp;</span>
-        <br />
-        <span className={title()}>
-          websites regardless of your design experience.
-        </span>
-        <div className={subtitle({ class: "mt-4" })}>
-          Beautiful, fast and modern React UI library.
-        </div>
-      </div>
-
-      <div className="flex gap-3">
-        <Link
-          isExternal
-          className={buttonStyles({
-            color: "primary",
-            radius: "full",
-            variant: "shadow",
-          })}
-          href={siteConfig.links.docs}
-        >
-          Documentation
-        </Link>
-        <Link
-          isExternal
-          className={buttonStyles({ variant: "bordered", radius: "full" })}
-          href={siteConfig.links.github}
-        >
-          <GithubIcon size={20} />
-          GitHub
-        </Link>
-      </div>
-
-      <div className="mt-8">
-        <Snippet hideCopyButton hideSymbol variant="bordered">
-          <span>
-            Get started by editing <Code color="primary">app/page.tsx</Code>
-          </span>
-        </Snippet>
-      </div>
-    </section>
+    <main>
+      <Carrousel />
+      <section className="text-center">
+        <h1 className="text-3xl font-bold">Diseño. Detalle. Potencia.</h1>
+        <p className="text-muted-foreground mt-2">
+          MKM Garage es una plataforma pensada para quienes buscan más que solo especificaciones: buscan estilo, identidad y potencia. Aquí, cada producto de la gama cobra vida a través de imágenes de alto impacto, descripciones claras y un enfoque centrado en el usuario. Sin precios ni carritos, la experiencia se basa en el contacto directo con asesores que entienden de motores y de personas. Desde el primer vistazo hasta el formulario de contacto, MKM Garage combina diseño, tecnología y pasión sobre ruedas.
+        </p>
+      </section>
+    </main>
   );
 }
