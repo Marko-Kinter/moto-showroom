@@ -1,20 +1,16 @@
-import FeatureTable from '@/components/products/actions/FeaturesTable'
-import React from 'react'
+import FeatureTable from '@/components/products/components/FeaturesTable';
 
-type Props = {
-  params: {
-    slug: string;
-  };
+type PageProps = {
+  params: { slug: string };
 };
 
-const MotoPage = async ({ params }: Props ) => {
-  const {slug} = params
+export default async function MotoPage({ params }: PageProps) {
+  const { slug } = params;
+
   return (
     <main>
-      <p>Info de moto {slug}</p>
-      <FeatureTable slug={slug}/>
+      <p>Info de moto: {slug}</p>
+      <FeatureTable slug={slug} />
     </main>
-  )
+  );
 }
-
-export default MotoPage
