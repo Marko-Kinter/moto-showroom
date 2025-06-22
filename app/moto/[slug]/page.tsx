@@ -1,9 +1,14 @@
 import FeatureTable from '@/components/products/actions/FeaturesTable'
 import React from 'react'
 
+type Props = {
+  params: {
+    slug: string;
+  };
+};
 
-const MotoPage = async ({ params }:{params: {slug : string}}) => {
-  const {slug} = await params
+const MotoPage = async ({ params }: Props ) => {
+  const {slug} = params
   return (
     <main>
       <p>Info de moto {slug}</p>
