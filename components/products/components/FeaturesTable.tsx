@@ -7,7 +7,13 @@ type Props = {
 
 export default async function FeatureTable({ slug }: Props) {
   const product = await getProductBySlug(slug);
-  const features = product.features ?? {};
+  const featuresObj = product.features ?? {};
+
+  const features = Object.entries(featuresObj).map(([clave, valor]) => ({
+    key: clave,
+    clave,
+    valor: valor !== null && valor !== undefined ? String(valor) : "-",
+  }));
 
   return <FeaturesTableClient features={features} />;
 }

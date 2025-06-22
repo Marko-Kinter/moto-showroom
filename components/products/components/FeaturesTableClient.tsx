@@ -9,23 +9,23 @@ import {
   TableCell,
 } from "@heroui/react";
 
+type FeatureItem = {
+  key: string;
+  clave: string;
+  valor: string;
+};
+
 type Props = {
-  features: Record<string, string>;
+  features: FeatureItem[];
 };
 
 const FeaturesTableClient = ({ features }: Props) => {
-  const rows = Object.entries(features).map(([clave, valor]) => ({
-    key: clave,
-    clave,
-    valor,
-  }));
-
   const columns = [
     { key: "clave", label: "Clave" },
     { key: "valor", label: "Valor" },
   ];
 
-  const getKeyValue = (item: any, key: string) => item[key];
+  const getKeyValue = (item: FeatureItem, key: string) => item[key as keyof FeatureItem];
 
   return (
     <Table hideHeader aria-label="Características del producto">
@@ -34,11 +34,11 @@ const FeaturesTableClient = ({ features }: Props) => {
           <TableColumn key={column.key}>{column.label}</TableColumn>
         )}
       </TableHeader>
-      <TableBody items={rows}>
+      <TableBody items={features}>
         {(item) => (
           <TableRow key={item.key}>
             {(columnKey) => (
-            <TableCell>{getKeyValue(item, String(columnKey))}</TableCell>
+              <TableCell>{getKeyValue(item, String(columnKey))}</TableCell>
             )}
           </TableRow>
         )}
