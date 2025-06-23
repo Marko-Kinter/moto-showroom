@@ -1,19 +1,50 @@
-import getProductBySlug from "@/components/products/actions/get-products";
-import FeaturesTableClient from "./FeaturesTableClient";
+"use client";
 
-type Props = {
-  slug: string;
+import {
+  Table,
+  TableHeader,
+  TableColumn,
+  TableBody,
+  TableRow,
+  TableCell,
+} from "@heroui/react";
+
+type FeatureItem = {
+  key: string;
+  clave: string;
+  valor: string;
 };
 
-export default async function FeatureTable({ slug }: Props) {
-  const product = await getProductBySlug(slug);
-  const featuresObj = product.features ?? {};
+type Props = {
+  features: FeatureItem[];
+};
 
-  const features = Object.entries(featuresObj).map(([clave, valor]) => ({
-    key: clave,
-    clave,
-    valor: valor !== null && valor !== undefined ? String(valor) : "-",
-  }));
+const FeaturesTable = ({ features }: Props) => {
+  const columns = [
+    { key: "clave", label: "Clave" },
+    { key: "valor", label: "Valor" },
+  ];
 
-  return <FeaturesTableClient features={features} />;
-}
+  const getKeyValue = (item: FeatureItem, key: string) => item[key as keyof FeatureItem];
+
+  return (
+    <Table hideHeader isStriped aria-label="Características del producto">
+      <TableHeader columns={columns}>
+        {(column) => (
+          <TableColumn key={column.key}>{column.label}</TableColumn>
+        )}
+      </TableHeader>
+      <TableBody items={features}>
+        {(item) => (
+          <TableRow key={item.key}>
+            {(columnKey) => (
+              <TableCell>{getKeyValue(item, String(columnKey))}</TableCell>
+            )}
+          </TableRow>
+        )}
+      </TableBody>
+    </Table>
+  );
+};
+
+export default FeaturesTable;

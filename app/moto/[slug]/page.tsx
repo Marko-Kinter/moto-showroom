@@ -1,18 +1,12 @@
-import FeatureTable from "@/components/products/components/FeaturesTable";
 
-type Props = {
-  params: {
-    slug: string;
-  };
-};
+import { getProductBySlug } from "@/components/products/actions/get-products";
+import { MotorcycleDetail } from "@/components/products/components/MotorcycleDetails";
 
-export default async function MotoPage({params}: { params : Promise<{slug:string}>}) {
-  const { slug } = await params;
+export default async function MotorcycleDetailPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params
+  console.log(slug)
+  const product  = await getProductBySlug(slug)
+  console.log(product)
 
-  return (
-    <main>
-      <p>Info de moto: {slug}</p>
-      <FeatureTable slug={slug}/>
-    </main>
-  );
+  return <MotorcycleDetail motorcycle={product} />
 }

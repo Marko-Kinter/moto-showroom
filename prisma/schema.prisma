@@ -18,9 +18,10 @@ model Product {
   id          String        @id @default(auto()) @map("_id") @db.ObjectId
   name        String
   slug        String        @unique
-  description String?
+  description String
   features    Json
   images      String[]
+  presentation_images String[]
   createdAt   DateTime      @default(now())
   updatedAt   DateTime      @updatedAt
   forms       ContactForm[]
@@ -41,6 +42,4 @@ model Admin {
   id       String  @id @default(auto()) @map("_id") @db.ObjectId
   email    String  @unique
   name     String?
-  image    String?
-  password String?
 }

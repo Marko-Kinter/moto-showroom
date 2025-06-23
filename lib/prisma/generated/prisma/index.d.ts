@@ -1070,6 +1070,7 @@ export namespace Prisma {
     description: number
     features: number
     images: number
+    presentation_images: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -1101,6 +1102,7 @@ export namespace Prisma {
     description?: true
     features?: true
     images?: true
+    presentation_images?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -1182,9 +1184,10 @@ export namespace Prisma {
     id: string
     name: string
     slug: string
-    description: string | null
+    description: string
     features: JsonValue
     images: string[]
+    presentation_images: string[]
     createdAt: Date
     updatedAt: Date
     _count: ProductCountAggregateOutputType | null
@@ -1213,6 +1216,7 @@ export namespace Prisma {
     description?: boolean
     features?: boolean
     images?: boolean
+    presentation_images?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     forms?: boolean | Product$formsArgs<ExtArgs>
@@ -1228,11 +1232,12 @@ export namespace Prisma {
     description?: boolean
     features?: boolean
     images?: boolean
+    presentation_images?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "slug" | "description" | "features" | "images" | "createdAt" | "updatedAt", ExtArgs["result"]["product"]>
+  export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "slug" | "description" | "features" | "images" | "presentation_images" | "createdAt" | "updatedAt", ExtArgs["result"]["product"]>
   export type ProductInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     forms?: boolean | Product$formsArgs<ExtArgs>
     _count?: boolean | ProductCountOutputTypeDefaultArgs<ExtArgs>
@@ -1247,9 +1252,10 @@ export namespace Prisma {
       id: string
       name: string
       slug: string
-      description: string | null
+      description: string
       features: Prisma.JsonValue
       images: string[]
+      presentation_images: string[]
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["product"]>
@@ -1651,6 +1657,7 @@ export namespace Prisma {
     readonly description: FieldRef<"Product", 'String'>
     readonly features: FieldRef<"Product", 'Json'>
     readonly images: FieldRef<"Product", 'String[]'>
+    readonly presentation_images: FieldRef<"Product", 'String[]'>
     readonly createdAt: FieldRef<"Product", 'DateTime'>
     readonly updatedAt: FieldRef<"Product", 'DateTime'>
   }
@@ -3080,24 +3087,18 @@ export namespace Prisma {
     id: string | null
     email: string | null
     name: string | null
-    image: string | null
-    password: string | null
   }
 
   export type AdminMaxAggregateOutputType = {
     id: string | null
     email: string | null
     name: string | null
-    image: string | null
-    password: string | null
   }
 
   export type AdminCountAggregateOutputType = {
     id: number
     email: number
     name: number
-    image: number
-    password: number
     _all: number
   }
 
@@ -3106,24 +3107,18 @@ export namespace Prisma {
     id?: true
     email?: true
     name?: true
-    image?: true
-    password?: true
   }
 
   export type AdminMaxAggregateInputType = {
     id?: true
     email?: true
     name?: true
-    image?: true
-    password?: true
   }
 
   export type AdminCountAggregateInputType = {
     id?: true
     email?: true
     name?: true
-    image?: true
-    password?: true
     _all?: true
   }
 
@@ -3203,8 +3198,6 @@ export namespace Prisma {
     id: string
     email: string
     name: string | null
-    image: string | null
-    password: string | null
     _count: AdminCountAggregateOutputType | null
     _min: AdminMinAggregateOutputType | null
     _max: AdminMaxAggregateOutputType | null
@@ -3228,8 +3221,6 @@ export namespace Prisma {
     id?: boolean
     email?: boolean
     name?: boolean
-    image?: boolean
-    password?: boolean
   }, ExtArgs["result"]["admin"]>
 
 
@@ -3238,11 +3229,9 @@ export namespace Prisma {
     id?: boolean
     email?: boolean
     name?: boolean
-    image?: boolean
-    password?: boolean
   }
 
-  export type AdminOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "name" | "image" | "password", ExtArgs["result"]["admin"]>
+  export type AdminOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "email" | "name", ExtArgs["result"]["admin"]>
 
   export type $AdminPayload<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     name: "Admin"
@@ -3251,8 +3240,6 @@ export namespace Prisma {
       id: string
       email: string
       name: string | null
-      image: string | null
-      password: string | null
     }, ExtArgs["result"]["admin"]>
     composites: {}
   }
@@ -3648,8 +3635,6 @@ export namespace Prisma {
     readonly id: FieldRef<"Admin", 'String'>
     readonly email: FieldRef<"Admin", 'String'>
     readonly name: FieldRef<"Admin", 'String'>
-    readonly image: FieldRef<"Admin", 'String'>
-    readonly password: FieldRef<"Admin", 'String'>
   }
     
 
@@ -4009,6 +3994,7 @@ export namespace Prisma {
     description: 'description',
     features: 'features',
     images: 'images',
+    presentation_images: 'presentation_images',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -4032,9 +4018,7 @@ export namespace Prisma {
   export const AdminScalarFieldEnum: {
     id: 'id',
     email: 'email',
-    name: 'name',
-    image: 'image',
-    password: 'password'
+    name: 'name'
   };
 
   export type AdminScalarFieldEnum = (typeof AdminScalarFieldEnum)[keyof typeof AdminScalarFieldEnum]
@@ -4120,9 +4104,10 @@ export namespace Prisma {
     id?: StringFilter<"Product"> | string
     name?: StringFilter<"Product"> | string
     slug?: StringFilter<"Product"> | string
-    description?: StringNullableFilter<"Product"> | string | null
+    description?: StringFilter<"Product"> | string
     features?: JsonFilter<"Product">
     images?: StringNullableListFilter<"Product">
+    presentation_images?: StringNullableListFilter<"Product">
     createdAt?: DateTimeFilter<"Product"> | Date | string
     updatedAt?: DateTimeFilter<"Product"> | Date | string
     forms?: ContactFormListRelationFilter
@@ -4135,6 +4120,7 @@ export namespace Prisma {
     description?: SortOrder
     features?: SortOrder
     images?: SortOrder
+    presentation_images?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     forms?: ContactFormOrderByRelationAggregateInput
@@ -4147,9 +4133,10 @@ export namespace Prisma {
     OR?: ProductWhereInput[]
     NOT?: ProductWhereInput | ProductWhereInput[]
     name?: StringFilter<"Product"> | string
-    description?: StringNullableFilter<"Product"> | string | null
+    description?: StringFilter<"Product"> | string
     features?: JsonFilter<"Product">
     images?: StringNullableListFilter<"Product">
+    presentation_images?: StringNullableListFilter<"Product">
     createdAt?: DateTimeFilter<"Product"> | Date | string
     updatedAt?: DateTimeFilter<"Product"> | Date | string
     forms?: ContactFormListRelationFilter
@@ -4162,6 +4149,7 @@ export namespace Prisma {
     description?: SortOrder
     features?: SortOrder
     images?: SortOrder
+    presentation_images?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: ProductCountOrderByAggregateInput
@@ -4176,9 +4164,10 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Product"> | string
     name?: StringWithAggregatesFilter<"Product"> | string
     slug?: StringWithAggregatesFilter<"Product"> | string
-    description?: StringNullableWithAggregatesFilter<"Product"> | string | null
+    description?: StringWithAggregatesFilter<"Product"> | string
     features?: JsonWithAggregatesFilter<"Product">
     images?: StringNullableListFilter<"Product">
+    presentation_images?: StringNullableListFilter<"Product">
     createdAt?: DateTimeWithAggregatesFilter<"Product"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Product"> | Date | string
   }
@@ -4255,16 +4244,12 @@ export namespace Prisma {
     id?: StringFilter<"Admin"> | string
     email?: StringFilter<"Admin"> | string
     name?: StringNullableFilter<"Admin"> | string | null
-    image?: StringNullableFilter<"Admin"> | string | null
-    password?: StringNullableFilter<"Admin"> | string | null
   }
 
   export type AdminOrderByWithRelationInput = {
     id?: SortOrder
     email?: SortOrder
     name?: SortOrder
-    image?: SortOrder
-    password?: SortOrder
   }
 
   export type AdminWhereUniqueInput = Prisma.AtLeast<{
@@ -4274,16 +4259,12 @@ export namespace Prisma {
     OR?: AdminWhereInput[]
     NOT?: AdminWhereInput | AdminWhereInput[]
     name?: StringNullableFilter<"Admin"> | string | null
-    image?: StringNullableFilter<"Admin"> | string | null
-    password?: StringNullableFilter<"Admin"> | string | null
   }, "id" | "email">
 
   export type AdminOrderByWithAggregationInput = {
     id?: SortOrder
     email?: SortOrder
     name?: SortOrder
-    image?: SortOrder
-    password?: SortOrder
     _count?: AdminCountOrderByAggregateInput
     _max?: AdminMaxOrderByAggregateInput
     _min?: AdminMinOrderByAggregateInput
@@ -4296,17 +4277,16 @@ export namespace Prisma {
     id?: StringWithAggregatesFilter<"Admin"> | string
     email?: StringWithAggregatesFilter<"Admin"> | string
     name?: StringNullableWithAggregatesFilter<"Admin"> | string | null
-    image?: StringNullableWithAggregatesFilter<"Admin"> | string | null
-    password?: StringNullableWithAggregatesFilter<"Admin"> | string | null
   }
 
   export type ProductCreateInput = {
     id?: string
     name: string
     slug: string
-    description?: string | null
+    description: string
     features: InputJsonValue
     images?: ProductCreateimagesInput | string[]
+    presentation_images?: ProductCreatepresentation_imagesInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string
     forms?: ContactFormCreateNestedManyWithoutProductInput
@@ -4316,9 +4296,10 @@ export namespace Prisma {
     id?: string
     name: string
     slug: string
-    description?: string | null
+    description: string
     features: InputJsonValue
     images?: ProductCreateimagesInput | string[]
+    presentation_images?: ProductCreatepresentation_imagesInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string
     forms?: ContactFormUncheckedCreateNestedManyWithoutProductInput
@@ -4327,9 +4308,10 @@ export namespace Prisma {
   export type ProductUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: StringFieldUpdateOperationsInput | string
     features?: InputJsonValue | InputJsonValue
     images?: ProductUpdateimagesInput | string[]
+    presentation_images?: ProductUpdatepresentation_imagesInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     forms?: ContactFormUpdateManyWithoutProductNestedInput
@@ -4338,9 +4320,10 @@ export namespace Prisma {
   export type ProductUncheckedUpdateInput = {
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: StringFieldUpdateOperationsInput | string
     features?: InputJsonValue | InputJsonValue
     images?: ProductUpdateimagesInput | string[]
+    presentation_images?: ProductUpdatepresentation_imagesInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     forms?: ContactFormUncheckedUpdateManyWithoutProductNestedInput
@@ -4350,9 +4333,10 @@ export namespace Prisma {
     id?: string
     name: string
     slug: string
-    description?: string | null
+    description: string
     features: InputJsonValue
     images?: ProductCreateimagesInput | string[]
+    presentation_images?: ProductCreatepresentation_imagesInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -4360,9 +4344,10 @@ export namespace Prisma {
   export type ProductUpdateManyMutationInput = {
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: StringFieldUpdateOperationsInput | string
     features?: InputJsonValue | InputJsonValue
     images?: ProductUpdateimagesInput | string[]
+    presentation_images?: ProductUpdatepresentation_imagesInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -4370,9 +4355,10 @@ export namespace Prisma {
   export type ProductUncheckedUpdateManyInput = {
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: StringFieldUpdateOperationsInput | string
     features?: InputJsonValue | InputJsonValue
     images?: ProductUpdateimagesInput | string[]
+    presentation_images?: ProductUpdatepresentation_imagesInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -4446,52 +4432,38 @@ export namespace Prisma {
     id?: string
     email: string
     name?: string | null
-    image?: string | null
-    password?: string | null
   }
 
   export type AdminUncheckedCreateInput = {
     id?: string
     email: string
     name?: string | null
-    image?: string | null
-    password?: string | null
   }
 
   export type AdminUpdateInput = {
     email?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-    password?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type AdminUncheckedUpdateInput = {
     email?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-    password?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type AdminCreateManyInput = {
     id?: string
     email: string
     name?: string | null
-    image?: string | null
-    password?: string | null
   }
 
   export type AdminUpdateManyMutationInput = {
     email?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-    password?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type AdminUncheckedUpdateManyInput = {
     email?: StringFieldUpdateOperationsInput | string
     name?: NullableStringFieldUpdateOperationsInput | string | null
-    image?: NullableStringFieldUpdateOperationsInput | string | null
-    password?: NullableStringFieldUpdateOperationsInput | string | null
   }
 
   export type StringFilter<$PrismaModel = never> = {
@@ -4507,22 +4479,6 @@ export namespace Prisma {
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     mode?: QueryMode
     not?: NestedStringFilter<$PrismaModel> | string
-  }
-
-  export type StringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
-    isSet?: boolean
   }
   export type JsonFilter<$PrismaModel = never> =
     | PatchUndefined<
@@ -4572,6 +4528,7 @@ export namespace Prisma {
     description?: SortOrder
     features?: SortOrder
     images?: SortOrder
+    presentation_images?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -4611,25 +4568,6 @@ export namespace Prisma {
     _min?: NestedStringFilter<$PrismaModel>
     _max?: NestedStringFilter<$PrismaModel>
   }
-
-  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    mode?: QueryMode
-    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
-    _count?: NestedIntNullableFilter<$PrismaModel>
-    _min?: NestedStringNullableFilter<$PrismaModel>
-    _max?: NestedStringNullableFilter<$PrismaModel>
-    isSet?: boolean
-  }
   export type JsonWithAggregatesFilter<$PrismaModel = never> =
     | PatchUndefined<
         Either<Required<JsonWithAggregatesFilterBase<$PrismaModel>>, Exclude<keyof Required<JsonWithAggregatesFilterBase<$PrismaModel>>, 'path'>>,
@@ -4657,6 +4595,22 @@ export namespace Prisma {
     _count?: NestedIntFilter<$PrismaModel>
     _min?: NestedDateTimeFilter<$PrismaModel>
     _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type StringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+    isSet?: boolean
   }
 
   export type ProductScalarRelationFilter = {
@@ -4694,31 +4648,48 @@ export namespace Prisma {
     createdAt?: SortOrder
   }
 
+  export type StringNullableWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    mode?: QueryMode
+    not?: NestedStringNullableWithAggregatesFilter<$PrismaModel> | string | null
+    _count?: NestedIntNullableFilter<$PrismaModel>
+    _min?: NestedStringNullableFilter<$PrismaModel>
+    _max?: NestedStringNullableFilter<$PrismaModel>
+    isSet?: boolean
+  }
+
   export type AdminCountOrderByAggregateInput = {
     id?: SortOrder
     email?: SortOrder
     name?: SortOrder
-    image?: SortOrder
-    password?: SortOrder
   }
 
   export type AdminMaxOrderByAggregateInput = {
     id?: SortOrder
     email?: SortOrder
     name?: SortOrder
-    image?: SortOrder
-    password?: SortOrder
   }
 
   export type AdminMinOrderByAggregateInput = {
     id?: SortOrder
     email?: SortOrder
     name?: SortOrder
-    image?: SortOrder
-    password?: SortOrder
   }
 
   export type ProductCreateimagesInput = {
+    set: string[]
+  }
+
+  export type ProductCreatepresentation_imagesInput = {
     set: string[]
   }
 
@@ -4740,12 +4711,12 @@ export namespace Prisma {
     set?: string
   }
 
-  export type NullableStringFieldUpdateOperationsInput = {
-    set?: string | null
-    unset?: boolean
+  export type ProductUpdateimagesInput = {
+    set?: string[]
+    push?: string | string[]
   }
 
-  export type ProductUpdateimagesInput = {
+  export type ProductUpdatepresentation_imagesInput = {
     set?: string[]
     push?: string | string[]
   }
@@ -4788,6 +4759,11 @@ export namespace Prisma {
     connect?: ProductWhereUniqueInput
   }
 
+  export type NullableStringFieldUpdateOperationsInput = {
+    set?: string | null
+    unset?: boolean
+  }
+
   export type ProductUpdateOneRequiredWithoutFormsNestedInput = {
     create?: XOR<ProductCreateWithoutFormsInput, ProductUncheckedCreateWithoutFormsInput>
     connectOrCreate?: ProductCreateOrConnectWithoutFormsInput
@@ -4808,21 +4784,6 @@ export namespace Prisma {
     startsWith?: string | StringFieldRefInput<$PrismaModel>
     endsWith?: string | StringFieldRefInput<$PrismaModel>
     not?: NestedStringFilter<$PrismaModel> | string
-  }
-
-  export type NestedStringNullableFilter<$PrismaModel = never> = {
-    equals?: string | StringFieldRefInput<$PrismaModel> | null
-    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
-    lt?: string | StringFieldRefInput<$PrismaModel>
-    lte?: string | StringFieldRefInput<$PrismaModel>
-    gt?: string | StringFieldRefInput<$PrismaModel>
-    gte?: string | StringFieldRefInput<$PrismaModel>
-    contains?: string | StringFieldRefInput<$PrismaModel>
-    startsWith?: string | StringFieldRefInput<$PrismaModel>
-    endsWith?: string | StringFieldRefInput<$PrismaModel>
-    not?: NestedStringNullableFilter<$PrismaModel> | string | null
-    isSet?: boolean
   }
 
   export type NestedDateTimeFilter<$PrismaModel = never> = {
@@ -4863,6 +4824,46 @@ export namespace Prisma {
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntFilter<$PrismaModel> | number
   }
+  export type NestedJsonFilter<$PrismaModel = never> =
+    | PatchUndefined<
+        Either<Required<NestedJsonFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>,
+        Required<NestedJsonFilterBase<$PrismaModel>>
+      >
+    | OptionalFlat<Omit<Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>
+
+  export type NestedJsonFilterBase<$PrismaModel = never> = {
+    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
+  }
+
+  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
+    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
+    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
+    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
+    _count?: NestedIntFilter<$PrismaModel>
+    _min?: NestedDateTimeFilter<$PrismaModel>
+    _max?: NestedDateTimeFilter<$PrismaModel>
+  }
+
+  export type NestedStringNullableFilter<$PrismaModel = never> = {
+    equals?: string | StringFieldRefInput<$PrismaModel> | null
+    in?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    notIn?: string[] | ListStringFieldRefInput<$PrismaModel> | null
+    lt?: string | StringFieldRefInput<$PrismaModel>
+    lte?: string | StringFieldRefInput<$PrismaModel>
+    gt?: string | StringFieldRefInput<$PrismaModel>
+    gte?: string | StringFieldRefInput<$PrismaModel>
+    contains?: string | StringFieldRefInput<$PrismaModel>
+    startsWith?: string | StringFieldRefInput<$PrismaModel>
+    endsWith?: string | StringFieldRefInput<$PrismaModel>
+    not?: NestedStringNullableFilter<$PrismaModel> | string | null
+    isSet?: boolean
+  }
 
   export type NestedStringNullableWithAggregatesFilter<$PrismaModel = never> = {
     equals?: string | StringFieldRefInput<$PrismaModel> | null
@@ -4892,31 +4893,6 @@ export namespace Prisma {
     gte?: number | IntFieldRefInput<$PrismaModel>
     not?: NestedIntNullableFilter<$PrismaModel> | number | null
     isSet?: boolean
-  }
-  export type NestedJsonFilter<$PrismaModel = never> =
-    | PatchUndefined<
-        Either<Required<NestedJsonFilterBase<$PrismaModel>>, Exclude<keyof Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>,
-        Required<NestedJsonFilterBase<$PrismaModel>>
-      >
-    | OptionalFlat<Omit<Required<NestedJsonFilterBase<$PrismaModel>>, 'path'>>
-
-  export type NestedJsonFilterBase<$PrismaModel = never> = {
-    equals?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-    not?: InputJsonValue | JsonFieldRefInput<$PrismaModel>
-  }
-
-  export type NestedDateTimeWithAggregatesFilter<$PrismaModel = never> = {
-    equals?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    in?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    notIn?: Date[] | string[] | ListDateTimeFieldRefInput<$PrismaModel>
-    lt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    lte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gt?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    gte?: Date | string | DateTimeFieldRefInput<$PrismaModel>
-    not?: NestedDateTimeWithAggregatesFilter<$PrismaModel> | Date | string
-    _count?: NestedIntFilter<$PrismaModel>
-    _min?: NestedDateTimeFilter<$PrismaModel>
-    _max?: NestedDateTimeFilter<$PrismaModel>
   }
 
   export type ContactFormCreateWithoutProductInput = {
@@ -4979,9 +4955,10 @@ export namespace Prisma {
     id?: string
     name: string
     slug: string
-    description?: string | null
+    description: string
     features: InputJsonValue
     images?: ProductCreateimagesInput | string[]
+    presentation_images?: ProductCreatepresentation_imagesInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -4990,9 +4967,10 @@ export namespace Prisma {
     id?: string
     name: string
     slug: string
-    description?: string | null
+    description: string
     features: InputJsonValue
     images?: ProductCreateimagesInput | string[]
+    presentation_images?: ProductCreatepresentation_imagesInput | string[]
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -5016,9 +4994,10 @@ export namespace Prisma {
   export type ProductUpdateWithoutFormsInput = {
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: StringFieldUpdateOperationsInput | string
     features?: InputJsonValue | InputJsonValue
     images?: ProductUpdateimagesInput | string[]
+    presentation_images?: ProductUpdatepresentation_imagesInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -5026,9 +5005,10 @@ export namespace Prisma {
   export type ProductUncheckedUpdateWithoutFormsInput = {
     name?: StringFieldUpdateOperationsInput | string
     slug?: StringFieldUpdateOperationsInput | string
-    description?: NullableStringFieldUpdateOperationsInput | string | null
+    description?: StringFieldUpdateOperationsInput | string
     features?: InputJsonValue | InputJsonValue
     images?: ProductUpdateimagesInput | string[]
+    presentation_images?: ProductUpdatepresentation_imagesInput | string[]
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
