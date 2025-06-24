@@ -5,11 +5,7 @@ import { useKeenSlider } from 'keen-slider/react';
 import Image from 'next/image';
 import { ChevronLeft, ChevronRight } from 'lucide-react'; // o cualquier ícono
 
-const images = [
-  '/slider/moto1.jpg',
-  '/slider/moto2.jpg',
-  '/slider/moto3.jpg',
-];
+
 
 function AutoplaySlider(slider: any) {
   let timeout: ReturnType<typeof setTimeout>;
@@ -43,7 +39,7 @@ function AutoplaySlider(slider: any) {
   slider.on('updated', nextTimeout);
 }
 
-export default function Carrousel() {
+export default function Carrousel({images}:{images:string[]}) {
   const [sliderRef, slider] = useKeenSlider<HTMLDivElement>(
     {
       loop: true,

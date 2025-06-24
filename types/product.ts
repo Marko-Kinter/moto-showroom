@@ -5,7 +5,8 @@ export type Product = {
   description: string;
   features: Record<string, string>; 
   images: string[];
-  presentation_images?: string[];
+  inquiries: string;
+  presentation_images: string[];
   createdAt: string;
   updatedAt: string;
 };
@@ -15,7 +16,7 @@ export interface Motorcycle {
   name: string
   slug: string
   description: string
-  presentation_images?: string[]
+  presentation_images: string[]
   images: string[]
   features: Record<string, string>
 }

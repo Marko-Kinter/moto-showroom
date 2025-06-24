@@ -3,6 +3,8 @@
 import { useEffect, useState } from "react"
 import { ChartBarIcon, CogIcon, UsersIcon, TruckIcon } from "@heroicons/react/24/outline"
 import { Product } from "@/types/product"
+import MotorcyclesTable from "./MotorcyclesTable"
+import MotorcycleInquiries from "./MotorcycleInquiries"
 
 // Mock data - replace with actual DB data
 const dashboardStats = [
@@ -33,18 +35,8 @@ const dashboardStats = [
 ]
 
 
-const motorcycleInquiries = [
-  { name: "Harley Davidson Street 750", inquiries: 45 },
-  { name: "Yamaha MT-07", inquiries: 38 },
-  { name: "BMW R1250GS", inquiries: 32 },
-  { name: "Kawasaki Ninja 650", inquiries: 28 },
-  { name: "Honda CB650R", inquiries: 24 },
-]
-
-
 
 export function AdminDashboard() {
-
     const [products, setProducts] = useState<Product[]>([]);
 
     useEffect(() => {
@@ -54,15 +46,16 @@ export function AdminDashboard() {
         .catch((err) => console.error("Error fetching products", err));
     }, []);
 
+    console.log(products)
 
   const [activeTab, setActiveTab] = useState("overview")
 
   return (
-    <div className="min-h-screen bg-gray-900 py-8">
+    <div className="min-h-screen py-8">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="mb-8">
           <h1 className="text-3xl font-bold">Admin Dashboard</h1>
-          <p className="text-gray-400 mt-2">Manage your motorcycle showroom</p>
+          <p className="light:text-gray-800 dark:text-gray-400 mt-2">Manage your motorcycle showroom</p>
         </div>
 
         {/* Navigation Tabs */}
@@ -80,7 +73,7 @@ export function AdminDashboard() {
                 className={`py-2 px-1 border-b-2 font-medium text-sm ${
                   activeTab === tab.id
                     ? "border-orange-500 text-orange-500"
-                    : "border-transparent text-gray-400 hover:text-gray-300"
+                    : "border-transparent light:text-gray-700 dark:text-gray-400 hover:text-gray-300"
                 }`}
               >
                 {tab.label}
@@ -101,7 +94,7 @@ export function AdminDashboard() {
                       <stat.icon className="h-8 w-8 text-orange-500" />
                     </div>
                     <div className="ml-4">
-                      <p className="text-sm font-medium text-gray-400">{stat.title}</p>
+                      <p className="text-sm font-medium light:text-gray-700 dark:text-gray-400">{stat.title}</p>
                       <div className="flex items-baseline">
                         <p className="text-2xl font-semibold">{stat.value}</p>
                         <p className="ml-2 text-sm text-green-400">{stat.change}</p>
@@ -113,72 +106,13 @@ export function AdminDashboard() {
             </div>
 
             {/* Motorcycle Inquiries Chart */}
-            <div className="card">
-              <h3 className="text-lg font-semibold mb-6">Inquiries by Motorcycle</h3>
-              <div className="space-y-4">
-                {motorcycleInquiries.map((item, index) => (
-                  <div key={index} className="flex items-center justify-between">
-                    <span className="text-gray-300">{item.name}</span>
-                    <div className="flex items-center space-x-4">
-                      <div className="w-32 bg-gray-700 rounded-full h-2">
-                        <div
-                          className="bg-orange-500 h-2 rounded-full"
-                          style={{ width: `${(item.inquiries / 50) * 100}%` }}
-                        ></div>
-                      </div>
-                      <span className="text-sm font-medium w-8">{item.inquiries}</span>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
+            <MotorcycleInquiries products={products} />
           </div>
         )}
 
         {/* Motorcycles Tab */}
         {activeTab === "motorcycles" && (
-          <div className="space-y-6">
-            <div className="flex justify-between items-center">
-              <h2 className="text-2xl font-bold">Motorcycle Management</h2>
-              <button className="btn-primary">Add New Motorcycle</button>
-            </div>
-
-            <div className="card">
-              <div className="overflow-x-auto">
-                <table className="min-w-full divide-y divide-gray-700">
-                  <thead>
-                    <tr>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
-                        Name
-                      </th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
-                        Status
-                      </th>
-                      <th className="px-6 py-3 text-left text-xs font-medium text-gray-400 uppercase tracking-wider">
-                        Actions
-                      </th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-gray-700">
-                    {motorcycleInquiries.map((motorcycle, index) => (
-                      <tr key={index}>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm text-white">{motorcycle.name}</td>
-                        <td className="px-6 py-4 whitespace-nowrap">
-                          <span className="px-2 inline-flex text-xs leading-5 font-semibold rounded-full bg-green-100 text-green-800">
-                            Active
-                          </span>
-                        </td>
-                        <td className="px-6 py-4 whitespace-nowrap text-sm font-medium space-x-2">
-                          <button className="text-orange-500 hover:text-orange-400">Edit</button>
-                          <button className="text-red-500 hover:text-red-400">Delete</button>
-                        </td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
-            </div>
-          </div>
+          <MotorcyclesTable products={products}/>
         )}
 
         {/* Users Tab */}

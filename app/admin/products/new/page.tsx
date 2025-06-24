@@ -1,9 +1,8 @@
-import React from 'react'
+import NewMotorcycleForm from "@/components/form/NewMotorcycleForm"
 
 const NewProductsPage = () => {
   return (
-    <div>NewProductsPage</div>
-  )
-}
-
+    <NewMotorcycleForm />
+  );
+};
 export default NewProductsPage

@@ -25,16 +25,68 @@ export async function getProductBySlug(slug: string): Promise<Product> {
     description: product.description,
     features,
     images: product.images,
+    inquiries: product.inquiries,
     presentation_images: product.presentation_images ?? [],
     createdAt: product.createdAt.toISOString(),
     updatedAt: product.updatedAt.toISOString(),
   };
 }
 
-export async function getAllProducts(){
-  const products = await prisma.product.findMany()
+export async function getAllProducts(): Promise<Product[]> {
+  const products = await prisma.product.findMany();
 
-  if (!products) notFound();
-
-  return products;
+  return products.map((product) => ({
+    id: product.id,
+    name: product.name,
+    slug: product.slug,
+    description: product.description,
+    features:
+      typeof product.features === "object" &&
+      product.features !== null &&
+      !Array.isArray(product.features)
+        ? (product.features as Record<string, string>)
+        : {},
+    images: product.images,
+    inquiries: product.inquiries,
+    presentation_images: product.presentation_images ?? [],
+    createdAt: product.createdAt.toISOString(),
+    updatedAt: product.updatedAt.toISOString(),
+  }));
 }
+
+interface CreateProductInput {
+  name: string;
+  slug: string;
+  description: string;
+  features: Record<string, string>;
+  images: string[];
+  presentation_images: string[];
+}
+
+export async function createProduct(data: CreateProductInput): Promise<Product> {
+  const newProduct = await prisma.product.create({
+    data: {
+      name: data.name,
+      slug: data.slug,
+      description: data.description,
+      features: data.features,
+      images: data.images,
+      presentation_images: data.presentation_images,
+      inquiries: "0"
+    },
+  });
+
+  return {
+    id: newProduct.id,
+    name: newProduct.name,
+    slug: newProduct.slug,
+    description: newProduct.description,
+    features: newProduct.features as Record<string, string>,
+    images: newProduct.images,
+    presentation_images: newProduct.presentation_images,
+    inquiries: "0",
+    createdAt: newProduct.createdAt.toISOString(),
+    updatedAt: newProduct.updatedAt.toISOString(),
+  };
+}
+

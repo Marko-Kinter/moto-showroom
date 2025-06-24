@@ -19,7 +19,7 @@ export async function MotorcycleDetail({ motorcycle }: MotorcycleDetailProps) {
   return (
     <div className="min-h-screen">
         {/* deberia enviarse la lista de presentation_images al carrousel */}
-      <Carrousel />
+      <Carrousel images={motorcycle.presentation_images}/>
         {/* Motorcycle Title Overlay */}
         <div className="absolute bottom-0 left-0 right-0 p-8 md:p-16">
           <div className="max-w-7xl mx-auto">
@@ -41,7 +41,7 @@ export async function MotorcycleDetail({ motorcycle }: MotorcycleDetailProps) {
         <div className="mb-16">
           <h2 className="text-3xl font-bold mb-8">Gallery</h2>
           <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
-            {/*motorcycle.images.map((image, index) => (
+            {motorcycle.images.map((image, index) => (
               <div
                 key={index}
                 className="relative h-48 overflow-hidden cursor-pointer hover:scale-105 transition-transform"
@@ -53,7 +53,7 @@ export async function MotorcycleDetail({ motorcycle }: MotorcycleDetailProps) {
                   className="object-cover"
                 />
               </div>
-            ))*/}
+            ))}
           </div>
         </div>
 

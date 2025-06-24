@@ -1050,6 +1050,7 @@ export namespace Prisma {
     name: string | null
     slug: string | null
     description: string | null
+    inquiries: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -1059,6 +1060,7 @@ export namespace Prisma {
     name: string | null
     slug: string | null
     description: string | null
+    inquiries: string | null
     createdAt: Date | null
     updatedAt: Date | null
   }
@@ -1071,6 +1073,7 @@ export namespace Prisma {
     features: number
     images: number
     presentation_images: number
+    inquiries: number
     createdAt: number
     updatedAt: number
     _all: number
@@ -1082,6 +1085,7 @@ export namespace Prisma {
     name?: true
     slug?: true
     description?: true
+    inquiries?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -1091,6 +1095,7 @@ export namespace Prisma {
     name?: true
     slug?: true
     description?: true
+    inquiries?: true
     createdAt?: true
     updatedAt?: true
   }
@@ -1103,6 +1108,7 @@ export namespace Prisma {
     features?: true
     images?: true
     presentation_images?: true
+    inquiries?: true
     createdAt?: true
     updatedAt?: true
     _all?: true
@@ -1188,6 +1194,7 @@ export namespace Prisma {
     features: JsonValue
     images: string[]
     presentation_images: string[]
+    inquiries: string
     createdAt: Date
     updatedAt: Date
     _count: ProductCountAggregateOutputType | null
@@ -1217,6 +1224,7 @@ export namespace Prisma {
     features?: boolean
     images?: boolean
     presentation_images?: boolean
+    inquiries?: boolean
     createdAt?: boolean
     updatedAt?: boolean
     forms?: boolean | Product$formsArgs<ExtArgs>
@@ -1233,11 +1241,12 @@ export namespace Prisma {
     features?: boolean
     images?: boolean
     presentation_images?: boolean
+    inquiries?: boolean
     createdAt?: boolean
     updatedAt?: boolean
   }
 
-  export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "slug" | "description" | "features" | "images" | "presentation_images" | "createdAt" | "updatedAt", ExtArgs["result"]["product"]>
+  export type ProductOmit<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = $Extensions.GetOmit<"id" | "name" | "slug" | "description" | "features" | "images" | "presentation_images" | "inquiries" | "createdAt" | "updatedAt", ExtArgs["result"]["product"]>
   export type ProductInclude<ExtArgs extends $Extensions.InternalArgs = $Extensions.DefaultArgs> = {
     forms?: boolean | Product$formsArgs<ExtArgs>
     _count?: boolean | ProductCountOutputTypeDefaultArgs<ExtArgs>
@@ -1256,6 +1265,7 @@ export namespace Prisma {
       features: Prisma.JsonValue
       images: string[]
       presentation_images: string[]
+      inquiries: string
       createdAt: Date
       updatedAt: Date
     }, ExtArgs["result"]["product"]>
@@ -1658,6 +1668,7 @@ export namespace Prisma {
     readonly features: FieldRef<"Product", 'Json'>
     readonly images: FieldRef<"Product", 'String[]'>
     readonly presentation_images: FieldRef<"Product", 'String[]'>
+    readonly inquiries: FieldRef<"Product", 'String'>
     readonly createdAt: FieldRef<"Product", 'DateTime'>
     readonly updatedAt: FieldRef<"Product", 'DateTime'>
   }
@@ -3995,6 +4006,7 @@ export namespace Prisma {
     features: 'features',
     images: 'images',
     presentation_images: 'presentation_images',
+    inquiries: 'inquiries',
     createdAt: 'createdAt',
     updatedAt: 'updatedAt'
   };
@@ -4108,6 +4120,7 @@ export namespace Prisma {
     features?: JsonFilter<"Product">
     images?: StringNullableListFilter<"Product">
     presentation_images?: StringNullableListFilter<"Product">
+    inquiries?: StringFilter<"Product"> | string
     createdAt?: DateTimeFilter<"Product"> | Date | string
     updatedAt?: DateTimeFilter<"Product"> | Date | string
     forms?: ContactFormListRelationFilter
@@ -4121,6 +4134,7 @@ export namespace Prisma {
     features?: SortOrder
     images?: SortOrder
     presentation_images?: SortOrder
+    inquiries?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     forms?: ContactFormOrderByRelationAggregateInput
@@ -4137,6 +4151,7 @@ export namespace Prisma {
     features?: JsonFilter<"Product">
     images?: StringNullableListFilter<"Product">
     presentation_images?: StringNullableListFilter<"Product">
+    inquiries?: StringFilter<"Product"> | string
     createdAt?: DateTimeFilter<"Product"> | Date | string
     updatedAt?: DateTimeFilter<"Product"> | Date | string
     forms?: ContactFormListRelationFilter
@@ -4150,6 +4165,7 @@ export namespace Prisma {
     features?: SortOrder
     images?: SortOrder
     presentation_images?: SortOrder
+    inquiries?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
     _count?: ProductCountOrderByAggregateInput
@@ -4168,6 +4184,7 @@ export namespace Prisma {
     features?: JsonWithAggregatesFilter<"Product">
     images?: StringNullableListFilter<"Product">
     presentation_images?: StringNullableListFilter<"Product">
+    inquiries?: StringWithAggregatesFilter<"Product"> | string
     createdAt?: DateTimeWithAggregatesFilter<"Product"> | Date | string
     updatedAt?: DateTimeWithAggregatesFilter<"Product"> | Date | string
   }
@@ -4287,6 +4304,7 @@ export namespace Prisma {
     features: InputJsonValue
     images?: ProductCreateimagesInput | string[]
     presentation_images?: ProductCreatepresentation_imagesInput | string[]
+    inquiries: string
     createdAt?: Date | string
     updatedAt?: Date | string
     forms?: ContactFormCreateNestedManyWithoutProductInput
@@ -4300,6 +4318,7 @@ export namespace Prisma {
     features: InputJsonValue
     images?: ProductCreateimagesInput | string[]
     presentation_images?: ProductCreatepresentation_imagesInput | string[]
+    inquiries: string
     createdAt?: Date | string
     updatedAt?: Date | string
     forms?: ContactFormUncheckedCreateNestedManyWithoutProductInput
@@ -4312,6 +4331,7 @@ export namespace Prisma {
     features?: InputJsonValue | InputJsonValue
     images?: ProductUpdateimagesInput | string[]
     presentation_images?: ProductUpdatepresentation_imagesInput | string[]
+    inquiries?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     forms?: ContactFormUpdateManyWithoutProductNestedInput
@@ -4324,6 +4344,7 @@ export namespace Prisma {
     features?: InputJsonValue | InputJsonValue
     images?: ProductUpdateimagesInput | string[]
     presentation_images?: ProductUpdatepresentation_imagesInput | string[]
+    inquiries?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
     forms?: ContactFormUncheckedUpdateManyWithoutProductNestedInput
@@ -4337,6 +4358,7 @@ export namespace Prisma {
     features: InputJsonValue
     images?: ProductCreateimagesInput | string[]
     presentation_images?: ProductCreatepresentation_imagesInput | string[]
+    inquiries: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -4348,6 +4370,7 @@ export namespace Prisma {
     features?: InputJsonValue | InputJsonValue
     images?: ProductUpdateimagesInput | string[]
     presentation_images?: ProductUpdatepresentation_imagesInput | string[]
+    inquiries?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -4359,6 +4382,7 @@ export namespace Prisma {
     features?: InputJsonValue | InputJsonValue
     images?: ProductUpdateimagesInput | string[]
     presentation_images?: ProductUpdatepresentation_imagesInput | string[]
+    inquiries?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -4529,6 +4553,7 @@ export namespace Prisma {
     features?: SortOrder
     images?: SortOrder
     presentation_images?: SortOrder
+    inquiries?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -4538,6 +4563,7 @@ export namespace Prisma {
     name?: SortOrder
     slug?: SortOrder
     description?: SortOrder
+    inquiries?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -4547,6 +4573,7 @@ export namespace Prisma {
     name?: SortOrder
     slug?: SortOrder
     description?: SortOrder
+    inquiries?: SortOrder
     createdAt?: SortOrder
     updatedAt?: SortOrder
   }
@@ -4959,6 +4986,7 @@ export namespace Prisma {
     features: InputJsonValue
     images?: ProductCreateimagesInput | string[]
     presentation_images?: ProductCreatepresentation_imagesInput | string[]
+    inquiries: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -4971,6 +4999,7 @@ export namespace Prisma {
     features: InputJsonValue
     images?: ProductCreateimagesInput | string[]
     presentation_images?: ProductCreatepresentation_imagesInput | string[]
+    inquiries: string
     createdAt?: Date | string
     updatedAt?: Date | string
   }
@@ -4998,6 +5027,7 @@ export namespace Prisma {
     features?: InputJsonValue | InputJsonValue
     images?: ProductUpdateimagesInput | string[]
     presentation_images?: ProductUpdatepresentation_imagesInput | string[]
+    inquiries?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
@@ -5009,6 +5039,7 @@ export namespace Prisma {
     features?: InputJsonValue | InputJsonValue
     images?: ProductUpdateimagesInput | string[]
     presentation_images?: ProductUpdatepresentation_imagesInput | string[]
+    inquiries?: StringFieldUpdateOperationsInput | string
     createdAt?: DateTimeFieldUpdateOperationsInput | Date | string
     updatedAt?: DateTimeFieldUpdateOperationsInput | Date | string
   }
