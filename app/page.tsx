@@ -6,7 +6,10 @@ export default function HomePage() {
   return (
     <div>
       <Hero />
-      <Carrousel />
+      <Carrousel images={[
+        "https://res.cloudinary.com/dilbujbhi/image/upload/v1750746153/v7hfw9wvkasktmdckhrb.jpg",
+        "https://res.cloudinary.com/dilbujbhi/image/upload/v1750746187/ysrzpkoalky0xkktm9ma.jpg",
+        "https://res.cloudinary.com/dilbujbhi/image/upload/v1750746204/fjnw7c7iv30cezmm04lj.jpg"]}/>
       <CompanyValues />
     </div>
   )

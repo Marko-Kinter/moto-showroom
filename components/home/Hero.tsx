@@ -5,7 +5,7 @@ export function Hero() {
       <div
         className="absolute inset-0 bg-cover bg-center opacity-20"
         style={{
-          backgroundImage: `url('/placeholder.svg?height=600&width=1200')`,
+          backgroundImage: `url('https://res.cloudinary.com/dilbujbhi/image/upload/v1750746682/ZkRBPQ_g4eyul.jpg')`,
         }}
       />
 
