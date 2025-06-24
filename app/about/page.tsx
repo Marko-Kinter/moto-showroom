@@ -4,14 +4,18 @@ export default function AboutPage() {
       <section>
         <h1 className="text-4xl font-bold mb-4">Sobre Nosotros</h1>
         <p className="text-lg text-gray-700">
-          En <strong>MKM Garage</strong>, nos apasiona la velocidad, el diseño y la libertad que solo una motocicleta puede ofrecer. Desde nuestros inicios, nos hemos comprometido con brindar a nuestros clientes una experiencia de alto nivel, tanto en la calidad de nuestras motos como en el servicio personalizado que ofrecemos.
+          En <strong>MKM Garage</strong>, nos apasiona la velocidad, el diseño y la libertad que
+          solo una motocicleta puede ofrecer. Desde nuestros inicios, nos hemos comprometido con
+          brindar a nuestros clientes una experiencia de alto nivel, tanto en la calidad de nuestras
+          motos como en el servicio personalizado que ofrecemos.
         </p>
       </section>
 
       <section>
         <h2 className="text-2xl font-semibold mb-2">Nuestra Misión</h2>
         <p className="text-gray-700">
-          Queremos convertirnos en el showroom de referencia para motociclistas exigentes, ofreciendo modelos cuidadosamente seleccionados que destacan por su rendimiento, estilo y confiabilidad.
+          Queremos convertirnos en el showroom de referencia para motociclistas exigentes, ofreciendo
+          modelos cuidadosamente seleccionados que destacan por su rendimiento, estilo y confiabilidad.
         </p>
       </section>
 
@@ -28,7 +32,8 @@ export default function AboutPage() {
       <section>
         <h2 className="text-2xl font-semibold mb-2">Dónde encontrarnos</h2>
         <p className="text-gray-700">
-          Estamos ubicados en el corazón de Villa Carlos Paz, Córdoba. Visitá nuestro showroom para ver nuestras motos en persona o contactanos para agendar una cita.
+          Estamos ubicados en el corazón de Villa Carlos Paz, Córdoba. Visitá nuestro showroom para
+          ver nuestras motos en persona o contactanos para agendar una cita.
         </p>
       </section>
     </main>

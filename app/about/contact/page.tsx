@@ -8,7 +8,8 @@ export default function ContactPage() {
       <section className="text-center">
         <h1 className="text-4xl font-bold mb-2">Contacto</h1>
         <p className="text-gray-600 text-lg">
-          ¿Tenés preguntas sobre nuestras motos o querés coordinar una visita al showroom? Escribinos.
+          ¿Tenés preguntas sobre nuestras motos o querés coordinar una visita al showroom?
+          Escribinos.
         </p>
       </section>
 

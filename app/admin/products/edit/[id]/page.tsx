@@ -1,9 +1,5 @@
-import React from 'react'
-
 const EditProductPage = () => {
-  return (
-    <div>EditProductPage</div>
-  )
-}
+  return <div>EditProductPage</div>;
+};
 
-export default EditProductPage
+export default EditProductPage;
