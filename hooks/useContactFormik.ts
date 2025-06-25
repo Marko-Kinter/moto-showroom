@@ -1,20 +1,21 @@
+import { addToast } from "@heroui/react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
 interface UseContactFormikProps {
-  motorcycleId?: string;
+  slug?: string;
 }
 
-export const useContactFormik = ({ motorcycleId }: UseContactFormikProps) => {
+export const useContactFormik = ({ slug }: UseContactFormikProps) => {
   return useFormik({
     initialValues: {
-      fullName: "",
+      name: "",
       email: "",
       phone: "",
       message: "",
     },
     validationSchema: Yup.object({
-      fullName: Yup.string()
+      name: Yup.string()
         .min(2, "Name must be at least 2 characters")
         .required("Full name is required"),
       email: Yup.string().email("Invalid email address").required("Email is required"),
@@ -25,12 +26,27 @@ export const useContactFormik = ({ motorcycleId }: UseContactFormikProps) => {
     }),
     onSubmit: async (values, { setSubmitting, resetForm }) => {
       try {
-        console.log("Form submitted:", { ...values, motorcycleId });
-        await new Promise((resolve) => setTimeout(resolve, 1000));
-        alert("Thank you for your interest! We'll get back to you soon.");
+        console.log("Form submitted:", { ...values, slug });
+        
+        if (slug) {
+          await fetch("/api/products/inquiry", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ ...values, slug }),
+          });
+        }
+        addToast({
+          title: "Thank you for your interest! We'll get back to you soon.",
+          color: "success",
+          timeout: 3000,
+        });
         resetForm();
       } catch (error) {
-        alert("Something went wrong. Please try again.");
+        addToast({
+          title: "Something went wrong, please try again later.",
+          color: "warning",
+          timeout: 3000,
+        });
       } finally {
         setSubmitting(false);
       }

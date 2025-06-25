@@ -5,6 +5,7 @@ import { ChartBarIcon, CogIcon, UsersIcon, TruckIcon } from "@heroicons/react/24
 import { Product } from "@/types/product"
 import MotorcyclesTable from "./MotorcyclesTable"
 import MotorcycleInquiries from "./MotorcycleInquiries"
+import InquiriesTab from "./InquiriesTab"
 
 // Mock data - replace with actual DB data
 const dashboardStats = [
@@ -40,11 +41,25 @@ export function AdminDashboard() {
     const [products, setProducts] = useState<Product[]>([]);
 
     useEffect(() => {
-    fetch("/api/products")
-        .then((res) => res.json())
-        .then(setProducts)
-        .catch((err) => console.error("Error fetching products", err));
+      const fetchProducts = async () => {
+        try {
+          const res = await fetch("/api/products");
+
+          if (!res.ok) {
+            const errorText = await res.text();
+            throw new Error(`Fetch failed: ${res.status} - ${errorText}`);
+          }
+
+          const data = await res.json();
+          setProducts(data);
+        } catch (error) {
+          console.error("Error fetching products", error);
+        }
+      };
+
+      fetchProducts();
     }, []);
+
 
     console.log(products)
 
@@ -141,38 +156,7 @@ export function AdminDashboard() {
 
         {/* Inquiries Tab */}
         {activeTab === "inquiries" && (
-          <div className="space-y-6">
-            <h2 className="text-2xl font-bold">Recent Inquiries</h2>
-
-            <div className="card">
-              <div className="space-y-4">
-                {[
-                  {
-                    name: "John Doe",
-                    email: "john@example.com",
-                    motorcycle: "Harley Davidson Street 750",
-                    date: "2024-01-15",
-                  },
-                  { name: "Jane Smith", email: "jane@example.com", motorcycle: "Yamaha MT-07", date: "2024-01-14" },
-                  { name: "Mike Johnson", email: "mike@example.com", motorcycle: "BMW R1250GS", date: "2024-01-13" },
-                ].map((inquiry, index) => (
-                  <div key={index} className="p-4 bg-gray-700 rounded-lg">
-                    <div className="flex justify-between items-start">
-                      <div>
-                        <h4 className="font-medium">{inquiry.name}</h4>
-                        <p className="text-sm text-gray-400">{inquiry.email}</p>
-                        <p className="text-sm text-orange-500">{inquiry.motorcycle}</p>
-                      </div>
-                      <div className="text-right">
-                        <p className="text-sm text-gray-400">{inquiry.date}</p>
-                        <button className="text-orange-500 hover:text-orange-400 text-sm">View Details</button>
-                      </div>
-                    </div>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
+          <InquiriesTab />
         )}
       </div>
     </div>

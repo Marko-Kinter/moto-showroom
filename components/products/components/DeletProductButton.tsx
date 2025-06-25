@@ -1,6 +1,6 @@
 "use client";
 
-import { Button } from "@heroui/react";
+import { addToast, Button } from "@heroui/react";
 
 type Props = {
   productId: string;
@@ -27,10 +27,20 @@ export default function DeleteProductButton({ productId, onDeleted }: Props) {
         throw new Error("Failed to delete motorcycle");
       }
 
-      alert("Motorcycle deleted successfully");
+      addToast({
+            title: "Motorcycle deleted succesfully",
+            color: "success",
+            timeout: 3000,
+            shouldShowTimeoutProgress: true,
+          });
       onDeleted?.();
     } catch (err) {
-      alert("Something went wrong. Please try again.");
+      addToast({
+        title: "Something went wrong. Please try again.",
+        color: "warning",
+        timeout: 3000,
+        shouldShowTimeoutProgress: true,
+      });
       console.error(err);
     }
   };

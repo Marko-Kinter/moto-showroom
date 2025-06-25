@@ -10,11 +10,20 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [Google],
   callbacks: {
     async signIn({ user }) {
-      // solo dejamos pasar si el email está en la lista permitida
-      return ALLOWED_EMAILS.includes(user.email ?? "");
+      // Permite solo usuarios con emails en la lista
+      if (user.email && ALLOWED_EMAILS.includes(user.email)) {
+        return true;
+      }
+      return false; // no autorizado
     },
-    async session({ session, token }) {
+    async session({ session }) {
+      // Aquí podrías añadir info extra a session si quieres
       return session;
     },
   },
+  session: {
+    strategy: "jwt",
+  },
 });
+
+

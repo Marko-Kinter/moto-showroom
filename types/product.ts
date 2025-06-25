@@ -5,11 +5,21 @@ export type Product = {
   description: string;
   features: Record<string, string>; 
   images: string[];
-  inquiries: string;
+  inquiries: number;
   presentation_images: string[];
   createdAt: string;
   updatedAt: string;
 };
+
+export type Inquiry ={
+  id: string;
+  name: string;
+  email: string;
+  message: string;
+  phone: string;
+  slug: string;
+  createdAt: string;
+}
 
 export interface Motorcycle {
   id: string

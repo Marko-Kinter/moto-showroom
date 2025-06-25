@@ -19,7 +19,7 @@ const MotorcycleInquiries = ({ products }: Props) => {
                         <div
                             className="bg-orange-500 h-2 rounded-full"
                             style={{
-                                width: `${Math.min((parseInt(product.inquiries || "0", 10) / 50) * 100, 100)}%`,
+                                width: `${Math.min((product.inquiries / 50) * 100, 100)}%`,
                             }}
                             />
                         </div>

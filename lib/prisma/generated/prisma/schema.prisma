@@ -22,10 +22,20 @@ model Product {
   features            Json
   images              String[]
   presentation_images String[]
-  inquiries           String
+  inquiries           Int           @default(0)
   createdAt           DateTime      @default(now())
   updatedAt           DateTime      @updatedAt
   forms               ContactForm[]
+}
+
+model Inquiry {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  email     String
+  message   String
+  phone     String
+  slug      String
+  createdAt DateTime @default(now())
 }
 
 model ContactForm {

@@ -3,10 +3,11 @@
 import { Product } from "@/types/product";
 import { useFormik } from "formik";
 import * as Yup from "yup";
-import { Input, Textarea, Button, Card } from "@heroui/react";
+import { Input, Textarea, Button, Card, addToast } from "@heroui/react";
 import FeatureInputs from "./FeatureInputs";
 import { useState } from "react";
 import ImageUploadButton from "../images/components/ImageUploadButton";
+import DeleteImageButton from "../images/components/DeleteImageButton";
 
 type Props = {
   product: Product;
@@ -54,9 +55,19 @@ export default function EditMotorcycleForm({ product }: Props) {
 
         if (!res.ok) throw new Error("Failed to edit product");
 
-        alert("Motorcycle updated successfully!");
+        addToast({
+          title: "Motorcycle updated successfully!",
+          color: "success",
+          timeout: 3000,
+          shouldShowTimeoutProgress: true,
+        });
       } catch (err) {
-        alert("Error updating motorcycle");
+        addToast({
+          title: "Error adding motorcycle",
+          color: "warning",
+          timeout: 3000,
+          shouldShowTimeoutProgress: true,
+        });
         console.error(err);
       } finally {
         setSubmitting(false);
@@ -92,13 +103,39 @@ export default function EditMotorcycleForm({ product }: Props) {
           label="Add Detail Image"
           onUpload={(url) => setImages((prev) => [...prev, url])}
         />
-        <ul>{images.map((url) => <li key={url}>{url}</li>)}</ul>
+        <ul>
+          {images.map((url) => {
+            const publicId = url.split("/").slice(-1)[0].split(".")[0]; // Esto saca el nombre del archivo sin extensión
+            return (
+              <li key={url} className="flex items-center gap-2">
+                <span className="text-sm text-gray-300">{url}</span>
+                <DeleteImageButton
+                  publicId={publicId}
+                  onDeleted={() => setImages((prev) => prev.filter((u) => u !== url))}
+                />
+              </li>
+            );
+          })}
+        </ul>
 
         <ImageUploadButton
           label="Add Presentation Image"
           onUpload={(url) => setPresentationImages((prev) => [...prev, url])}
         />
-        <ul>{presentationImages.map((url) => <li key={url}>{url}</li>)}</ul>
+        <ul>
+          {presentationImages.map((url) => {
+            const publicId = url.split("/").slice(-1)[0].split(".")[0]; // Esto saca el nombre del archivo sin extensión
+            return (
+              <li key={url} className="flex items-center gap-2">
+                <span className="text-sm text-gray-300">{url}</span>
+                <DeleteImageButton
+                  publicId={publicId}
+                  onDeleted={() => setPresentationImages((prev) => prev.filter((u) => u !== url))}
+                />
+              </li>
+            );
+          })}
+        </ul>
 
         <Button type="submit" fullWidth isDisabled={formik.isSubmitting}>
           {formik.isSubmitting ? "Updating..." : "Update Motorcycle"}

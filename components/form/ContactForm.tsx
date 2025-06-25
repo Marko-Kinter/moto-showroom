@@ -4,24 +4,24 @@ import { Form, Input, Textarea, Button, Card } from "@heroui/react";
 import { useContactFormik } from "@/hooks/useContactFormik";
 
 interface ContactFormProps {
-  motorcycleId?: string;
+  slug?: string;
 }
 
-export function ContactForm({ motorcycleId }: ContactFormProps) {
-  const formik = useContactFormik({ motorcycleId });
+export function ContactForm({ slug }: ContactFormProps) {
+  const formik = useContactFormik({ slug });
 
   return (
-    <Card className="my-4">
-        <Form onSubmit={formik.handleSubmit} className="max-w-xl mx-auto space-y-4 my-4">
+    <Card className="">
+        <Form onSubmit={formik.handleSubmit} className="mx-6 space-y-4 my-4">
         <Input
-            name="fullName"
+            name="name"
             label="Full Name"
             placeholder="Enter your full name"
-            value={formik.values.fullName}
+            value={formik.values.name}
             onChange={formik.handleChange}
             onBlur={formik.handleBlur}
-            isInvalid={formik.touched.fullName && Boolean(formik.errors.fullName)}
-            errorMessage={formik.touched.fullName && formik.errors.fullName}
+            isInvalid={formik.touched.name && Boolean(formik.errors.name)}
+            errorMessage={formik.touched.name && formik.errors.name}
         />
 
         <Input

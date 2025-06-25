@@ -15,17 +15,27 @@ datasource db {
 }
 
 model Product {
-  id          String        @id @default(auto()) @map("_id") @db.ObjectId
-  name        String
-  slug        String        @unique
-  description String
-  features    Json
-  images      String[]
+  id                  String        @id @default(auto()) @map("_id") @db.ObjectId
+  name                String
+  slug                String        @unique
+  description         String
+  features            Json
+  images              String[]
   presentation_images String[]
-  inquiries   String
-  createdAt   DateTime      @default(now())
-  updatedAt   DateTime      @updatedAt
-  forms       ContactForm[]
+  inquiries           Int           @default(0)
+  createdAt           DateTime      @default(now())
+  updatedAt           DateTime      @updatedAt
+  forms               ContactForm[]
+}
+
+model Inquiry {
+  id        String   @id @default(auto()) @map("_id") @db.ObjectId
+  name      String
+  email     String
+  message   String
+  phone     String
+  slug      String  
+  createdAt DateTime @default(now())
 }
 
 model ContactForm {
@@ -40,7 +50,7 @@ model ContactForm {
 }
 
 model Admin {
-  id       String  @id @default(auto()) @map("_id") @db.ObjectId
-  email    String  @unique
-  name     String?
+  id    String  @id @default(auto()) @map("_id") @db.ObjectId
+  email String  @unique
+  name  String?
 }

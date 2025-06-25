@@ -2,8 +2,13 @@ import { createProduct, getAllProducts } from "@/components/products/actions/get
 import { NextResponse } from "next/server";
 
 export async function GET() {
-  const products = await getAllProducts();
-  return NextResponse.json(products);
+  try {
+    const products = await getAllProducts();
+    return NextResponse.json(products);
+  } catch (error) {
+    console.error("API /products failed:", error);
+    return new NextResponse("Internal Server Error", { status: 500 });
+  }
 }
 
 export async function POST(req: Request) {

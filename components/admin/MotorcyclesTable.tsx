@@ -24,7 +24,7 @@ const MotorcyclesTable = ({ products }: Props) => {
     <div className="space-y-6">
       <div className="flex justify-between items-center">
         <h2 className="text-2xl font-bold">Motorcycle Management</h2>
-        <Link href={"/admin/products/new"}>
+        <Link href={"/admin/new"}>
             <Button>Add New Motorcycle</Button>
         </Link>
       </div>
