@@ -4,7 +4,7 @@ export default function AboutPage() {
       <section>
         <h1 className="text-4xl font-bold mb-4">About Us</h1>
         <p className="text-lg dark:text-gray-300 light:text-gray-700">
-          At <strong>MKM Garage</strong>, we&apos;re passionate about speed, design, and the freedom that only a motorcycle can offer. Since the beginning, we've been committed to providing our customers with a top-tier experience, both in the quality of our bikes and the personalized service we offer.
+          At <strong>MKM Garage</strong>, we&apos;re passionate about speed, design, and the freedom that only a motorcycle can offer. Since the beginning, we&apos;ve been committed to providing our customers with a top-tier experience, both in the quality of our bikes and the personalized service we offer.
         </p>
       </section>
 
