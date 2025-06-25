@@ -17,7 +17,7 @@ const userData: Prisma.ProductCreateInput[] = [
           'https://res.cloudinary.com/demo/image/upload/v1718200000/moto1.jpg',
           'https://res.cloudinary.com/demo/image/upload/v1718200000/moto2.jpg',
         ],
-	inquiries: '4',
+	inquiries: 4,
       },
       {
         name: 'Moto TrailX 450',
@@ -33,7 +33,7 @@ const userData: Prisma.ProductCreateInput[] = [
           'https://res.cloudinary.com/demo/image/upload/v1718200000/moto3.jpg',
           'https://res.cloudinary.com/demo/image/upload/v1718200000/moto4.jpg',
         ],
-	inquiries: '23',
+	inquiries: 23,
       },
       {
         name: 'Moto Urban 125',
@@ -48,7 +48,7 @@ const userData: Prisma.ProductCreateInput[] = [
         images: [
           'https://res.cloudinary.com/demo/image/upload/v1718200000/moto5.jpg',
         ],
-	inquiries: '17',
+	inquiries: 17,
       },
 ];
 
