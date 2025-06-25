@@ -38,7 +38,7 @@ export function CompanyValues() {
 
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8">
           {values.map((value, index) => (
-            <div key={index} className="m-4 p-4 rounded-xl text-center group hover:bg-gray-600/20 transition-all duration-300">
+            <div key={index} className="m-4 p-4 rounded-xl text-center group hover:bg-gray-600/20 border border-gray-600 transition-all duration-300">
               <div className="mb-6">
                 <value.icon className="h-12 w-12 mx-auto group-hover:scale-110 transition-transform duration-300" />
               </div>

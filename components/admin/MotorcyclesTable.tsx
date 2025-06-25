@@ -11,12 +11,15 @@ import {
   TableRow,
 } from "@heroui/react";
 import Link from "next/link";
+import DeleteProductButton from "../products/components/DeletProductButton";
+import { useRouter } from "next/navigation";
 
 type Props = {
   products: Product[];
 };
 
 const MotorcyclesTable = ({ products }: Props) => {
+  const router = useRouter();
   return (
     <div className="space-y-6">
       <div className="flex justify-between items-center">
@@ -40,12 +43,12 @@ const MotorcyclesTable = ({ products }: Props) => {
                     {product.name}
                   </TableCell>
                   <TableCell className="text-right">
-                    <Button color="warning" variant="light">
-                      Edit
-                    </Button>
-                    <Button color="danger" variant="light">
-                      Delete
-                    </Button>
+                    <Link href={`/admin/edit/${product.slug}`}>
+                      <Button color="warning" variant="light">
+                        Edit
+                      </Button>
+                    </Link>
+                    <DeleteProductButton productId={product.id} onDeleted={() => router.refresh()}/>
                   </TableCell>
                 </TableRow>
               ))}

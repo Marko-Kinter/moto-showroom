@@ -2,38 +2,33 @@ export default function AboutPage() {
   return (
     <main className="max-w-4xl mx-auto px-6 py-12 space-y-8">
       <section>
-        <h1 className="text-4xl font-bold mb-4">Sobre Nosotros</h1>
-        <p className="text-lg text-gray-700">
-          En <strong>MKM Garage</strong>, nos apasiona la velocidad, el diseño y la libertad que
-          solo una motocicleta puede ofrecer. Desde nuestros inicios, nos hemos comprometido con
-          brindar a nuestros clientes una experiencia de alto nivel, tanto en la calidad de nuestras
-          motos como en el servicio personalizado que ofrecemos.
+        <h1 className="text-4xl font-bold mb-4">About Us</h1>
+        <p className="text-lg dark:text-gray-300 light:text-gray-700">
+          At <strong>MKM Garage</strong>, we&apos;re passionate about speed, design, and the freedom that only a motorcycle can offer. Since the beginning, we've been committed to providing our customers with a top-tier experience, both in the quality of our bikes and the personalized service we offer.
         </p>
       </section>
 
       <section>
-        <h2 className="text-2xl font-semibold mb-2">Nuestra Misión</h2>
-        <p className="text-gray-700">
-          Queremos convertirnos en el showroom de referencia para motociclistas exigentes, ofreciendo
-          modelos cuidadosamente seleccionados que destacan por su rendimiento, estilo y confiabilidad.
+        <h2 className="text-2xl font-semibold mb-2">Our Mission</h2>
+        <p className="dark:text-gray-300 light:text-gray-700">
+          We aim to become the go-to showroom for demanding motorcyclists, offering carefully selected models that stand out for their performance, style, and reliability.
         </p>
       </section>
 
       <section>
-        <h2 className="text-2xl font-semibold mb-2">Lo que nos diferencia</h2>
-        <ul className="list-disc list-inside text-gray-700 space-y-1">
-          <li>Catálogo exclusivo de motos de media y alta gama</li>
-          <li>Asesoramiento técnico y estético personalizado</li>
-          <li>Soporte post-venta y conexión directa con talleres de confianza</li>
-          <li>Eventos, pruebas de manejo y comunidad para fanáticos de las motos</li>
+        <h2 className="text-2xl font-semibold mb-2">What Sets Us Apart</h2>
+        <ul className="list-disc list-inside dark:text-gray-300 light:text-gray-700 space-y-1">
+          <li>Exclusive catalog of mid and high-end motorcycles</li>
+          <li>Personalized technical and aesthetic advice</li>
+          <li>After-sales support and direct connection with trusted workshops</li>
+          <li>Events, test rides, and a community for motorcycle enthusiasts</li>
         </ul>
       </section>
 
       <section>
-        <h2 className="text-2xl font-semibold mb-2">Dónde encontrarnos</h2>
-        <p className="text-gray-700">
-          Estamos ubicados en el corazón de Villa Carlos Paz, Córdoba. Visitá nuestro showroom para
-          ver nuestras motos en persona o contactanos para agendar una cita.
+        <h2 className="text-2xl font-semibold mb-2">Where to Find Us</h2>
+        <p className="dark:text-gray-300 light:text-gray-700">
+          We&apos;re located in the heart of Villa Carlos Paz, Córdoba. Visit our showroom to see our motorcycles in person or contact us to schedule an appointment.
         </p>
       </section>
     </main>

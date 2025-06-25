@@ -2,6 +2,7 @@ import { PrismaClient } from "@/lib/prisma/generated/prisma";
 import { notFound } from "next/navigation";
 import { Product } from "@/types/product";
 import { prepareDataForValidation } from "formik";
+import { revalidatePath } from "next/cache";
 
 const prisma = new PrismaClient();
 
@@ -90,3 +91,37 @@ export async function createProduct(data: CreateProductInput): Promise<Product> 
   };
 }
 
+export async function deleteProduct(productId: string) {
+  try {
+    await prisma.product.delete({
+      where: { id: productId },
+    });
+
+    revalidatePath("/admin")
+  } catch (error) {
+    console.error("Error deleting product:", error);
+    throw new Error("Failed to delete product");
+  }
+}
+
+export async function updateProduct(data: {
+  id: string;
+  name: string;
+  slug: string;
+  description: string;
+  features: Record<string, string>;
+  images: string[];
+  presentation_images: string[];
+}) {
+  await prisma.product.update({
+    where: { slug: data.slug },
+    data: {
+      name: data.name,
+      slug: data.slug,
+      description: data.description,
+      features: data.features,
+      images: data.images,
+      presentation_images: data.presentation_images,
+    },
+  });
+}

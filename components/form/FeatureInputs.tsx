@@ -33,22 +33,22 @@ export default function FeatureInputs({ features, setFeatures }: Props) {
   return (
     <div className="space-y-4">
       <div className="flex justify-between items-center">
-        <h3 className="text-md font-medium text-gray-200">Features</h3>
+        <h3 className="text-md font-medium text-gray-200 m-2">Features</h3>
         <Button size="sm" onPress={addFeature} color="primary" variant="ghost">
-          Agregar característica
+          Add Feature
         </Button>
       </div>
 
       {features.map((feature, index) => (
         <div key={index} className="flex items-center gap-2">
           <Input
-            placeholder="Clave (ej. Motor)"
+            placeholder="Key (eg. Motor)"
             value={feature.key}
             onChange={(e) => handleChange(index, "key", e.target.value)}
             className="w-1/2"
           />
           <Input
-            placeholder="Valor (ej. 250cc)"
+            placeholder="Value (eg. 250cc)"
             value={feature.value}
             onChange={(e) => handleChange(index, "value", e.target.value)}
             className="w-1/2"

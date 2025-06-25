@@ -1,6 +1,8 @@
+import Link from "next/link";
+
 export function Hero() {
   return (
-    <section className="relative py-12 mt-16">
+    <section className="relative py-12">
       <div className="absolute inset-0 bg-gradient-to-br from-gray-900 via-black to-gray-900" />
       <div
         className="absolute inset-0 bg-cover bg-center opacity-20"
@@ -34,9 +36,11 @@ export function Hero() {
         </div>
 
         <div className="mt-12">
-          <button className="btn-primary text-lg px-8 py-4">
-            Discover Your Adventure
-          </button>
+          <Link href={"/about"}>
+            <button className="hover:text-gray-600 text-lg px-8 py-4">
+              Discover Your Adventure
+            </button>
+          </Link>
         </div>
       </div>
     </section>

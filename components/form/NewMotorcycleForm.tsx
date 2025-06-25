@@ -20,7 +20,7 @@ export default function NewMotorcycleForm() {
   const formik = useNewMotorcycleForm({ features, images, presentationImages});
 
   return (
-    <Card className="my-4">
+    <Card className="p-4">
       <Form onSubmit={formik.handleSubmit} className="max-w-xl mx-auto space-y-4 my-4">
         <Input
           name="name"
@@ -47,7 +47,7 @@ export default function NewMotorcycleForm() {
         <FeatureInputs features={features} setFeatures={setFeatures} />
         
         <ImageUploadButton
-        label="Subir imagen (detalle)"
+        label="Upload Image (Carrousel)"
         onUpload={(url) => setImages((prev) => [...prev, url])}
         />
 
@@ -58,7 +58,7 @@ export default function NewMotorcycleForm() {
         </ul>
 
         <ImageUploadButton
-        label="Subir imagen (presentación)"
+        label="Upload Image (Gallery)"
         onUpload={(url) => setPresentationImages((prev) => [...prev, url])}
         />
 
