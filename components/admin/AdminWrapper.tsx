@@ -9,7 +9,7 @@ export default function AdminPanelWrapper({ children }: { children: React.ReactN
   const router = useRouter();
 
   useEffect(() => {
-    if (status === "authenticated") {
+    if (status === "unauthenticated") {
       // Si no está logueado, redirigir al login
       router.push("/login"); // redirige a la página de login
     }
@@ -19,7 +19,7 @@ export default function AdminPanelWrapper({ children }: { children: React.ReactN
     return <div>Loading...</div>; // o spinner
   }
 
-  if (true) {
+  if (status === "authenticated") {
     return <>{children}</>; // muestra el contenido del panel
   }
 
