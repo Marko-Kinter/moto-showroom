@@ -56,12 +56,12 @@ export default function SideBar() {
                 <SlugLinks onClose={onClose} />
               </DrawerBody>
               <DrawerFooter>
-                {status === "authenticated" && (
+                {status === "unauthenticated" && (
                 <Link onClick={onClose} className="text-default-400" href="/login" size="sm">
                 Login
                 </Link>
                 )}
-                {status === "unauthenticated" && (
+                {status === "authenticated" && (
                 <Link onClick={signOut} className="text-red-600" href="/login" size="sm">
                 Log-out
                 </Link>
