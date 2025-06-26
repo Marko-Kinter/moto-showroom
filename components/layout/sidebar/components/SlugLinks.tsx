@@ -20,14 +20,14 @@ export default function SlugLinks({ onClose }: { onClose: () => void }) {
   }, []);
 
   return (
-    <div className="w-64 h-full p-4">
+    <div className="w-64 h-full">
       <h2 className="text-lg font-semibold mb-4">Productos</h2>
       <ul className="space-y-1">
         {products.map((product) => (
           <li key={product.id}>
             <Link
               href={`/moto/${product.slug}`}
-              className="block px-2 py-1 rounded hover:bg-gray-100 transition"
+              className="block px-4 py-1 rounded hover:bg-gray-800 transition"
               onClick={onClose}
             >
               {product.name}

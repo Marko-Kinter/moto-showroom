@@ -11,7 +11,7 @@ export function ContactForm({ slug }: ContactFormProps) {
   const formik = useContactFormik({ slug });
 
   return (
-    <Card className="">
+    <Card className="my-4">
         <Form onSubmit={formik.handleSubmit} className="mx-6 space-y-4 my-4">
         <Input
             name="name"

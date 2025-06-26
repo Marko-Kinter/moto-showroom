@@ -63,7 +63,7 @@ export default function EditMotorcycleForm({ product }: Props) {
         });
       } catch (err) {
         addToast({
-          title: "Error adding motorcycle",
+          title: "Error updating motorcycle",
           color: "warning",
           timeout: 3000,
           shouldShowTimeoutProgress: true,

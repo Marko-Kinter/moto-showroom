@@ -1,3 +1,4 @@
+import { addToast } from "@heroui/react";
 import { useFormik } from "formik";
 import * as Yup from "yup";
 
@@ -64,10 +65,20 @@ export const useNewMotorcycleForm = ({
 
         if (!res.ok) throw new Error("Failed to submit");
 
-        alert("Motorcycle added successfully");
+        addToast({
+          title:"Motorcycle added successfully",
+          color: "success",
+          timeout: 3000,
+          shouldShowTimeoutProgress:true,
+        });
         resetForm();
       } catch (error) {
-        alert("Error adding motorcycle. Try again.");
+        addToast({
+          title:"Error adding motorcycle.",
+          color: "danger",
+          timeout: 3000,
+          shouldShowTimeoutProgress:true,
+        });
       } finally {
         setSubmitting(false);
       }

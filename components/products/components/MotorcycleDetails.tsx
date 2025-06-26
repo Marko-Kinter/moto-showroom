@@ -3,6 +3,7 @@ import { ContactForm } from "@/components/form/ContactForm"
 import Carrousel from "@/components/images/components/Carrousel"
 import FeaturesTable from "./FeaturesTable"
 import { MotorcycleDetailProps } from "@/types/product";
+import { redirect } from "next/navigation";
 
 
 
@@ -18,13 +19,11 @@ export async function MotorcycleDetail({ motorcycle }: MotorcycleDetailProps) {
 
   return (
     <div className="min-h-screen">
-      <Carrousel images={motorcycle.presentation_images}/>
-        {/* Motorcycle Title Overlay */}
-        <div className="absolute bottom-0 left-0 right-0 p-8 md:p-16">
+      <Carrousel images={motorcycle.presentation_images}>
           <div className="max-w-7xl mx-auto">
-            <h1 className="text-4xl md:text-6xl font-bold mb-4 backdrop-blur-sm">{motorcycle.name}</h1>
+            <h1 className="text-4xl md:text-6xl bg-gray-800/50 text-gray-100 font-bold mb-4 backdrop-blur-sm pl-2">{motorcycle.name}</h1>
           </div>
-        </div>
+      </Carrousel>
 
       {/* Content Section */}
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-16">

@@ -1,29 +1,31 @@
-import NextAuth from "next-auth"
-import Google from "next-auth/providers/google"
- 
-const ALLOWED_EMAILS = [
-  "admin1@mkmsgarage.com",
-  "soporte@mkmsgarage.com",
-  "kintermarko@gmail.com", // ejemplo
-];
+import NextAuth from "next-auth";
+import Google from "next-auth/providers/google";
+import { getAllAdmins } from "./components/admin/actions/users-action";
+
 export const { handlers, signIn, signOut, auth } = NextAuth({
   providers: [Google],
   callbacks: {
     async signIn({ user }) {
-      // Permite solo usuarios con emails en la lista
-      if (user.email && ALLOWED_EMAILS.includes(user.email)) {
-        return true;
+      if (!user.email) return false;
+
+      try {
+        const admins = await getAllAdmins();
+        const allowedEmails = admins.map((admin) => admin.email);
+        return allowedEmails.includes(user.email);
+      } catch (err) {
+        console.error("Error checking admin emails:", err);
+        return false;
       }
-      return false; // no autorizado
     },
     async session({ session }) {
-      // Aquí podrías añadir info extra a session si quieres
       return session;
+    },
+    async redirect({ url, baseUrl }) {
+      // Siempre redirige a la raíz
+      return baseUrl;
     },
   },
   session: {
     strategy: "jwt",
   },
 });
-
-

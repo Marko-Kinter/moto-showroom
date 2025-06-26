@@ -5,7 +5,10 @@ import { useKeenSlider } from 'keen-slider/react';
 import Image from 'next/image';
 import { ChevronLeft, ChevronRight } from 'lucide-react'; // o cualquier ícono
 
-
+type CarrouselProps = {
+  images: string[];
+  children?: React.ReactNode;
+};
 
 function AutoplaySlider(slider: any) {
   let timeout: ReturnType<typeof setTimeout>;
@@ -39,7 +42,7 @@ function AutoplaySlider(slider: any) {
   slider.on('updated', nextTimeout);
 }
 
-export default function Carrousel({images}:{images:string[]}) {
+export default function Carrousel({ images, children }:CarrouselProps) {
   const [sliderRef, slider] = useKeenSlider<HTMLDivElement>(
     {
       loop: true,
@@ -81,6 +84,9 @@ export default function Carrousel({images}:{images:string[]}) {
       >
         <ChevronRight size={24} />
       </button>
+      <div className="absolute bottom-0 left-0 right-0 p-2 md:p-4">
+        {children}
+      </div>
     </div>
   );
 }

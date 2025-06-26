@@ -31,6 +31,12 @@ export interface Motorcycle {
   features: Record<string, string>
 }
 
+export type Admin = {
+  id: string;
+  name: string;
+  email: string;
+}
+
 export interface MotorcycleDetailProps {
   motorcycle: Motorcycle
 }

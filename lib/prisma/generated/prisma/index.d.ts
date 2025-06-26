@@ -4287,7 +4287,7 @@ export namespace Prisma {
   export type AdminGroupByOutputType = {
     id: string
     email: string
-    name: string | null
+    name: string
     _count: AdminCountAggregateOutputType | null
     _min: AdminMinAggregateOutputType | null
     _max: AdminMaxAggregateOutputType | null
@@ -4329,7 +4329,7 @@ export namespace Prisma {
     scalars: $Extensions.GetPayloadResult<{
       id: string
       email: string
-      name: string | null
+      name: string
     }, ExtArgs["result"]["admin"]>
     composites: {}
   }
@@ -5430,7 +5430,7 @@ export namespace Prisma {
     NOT?: AdminWhereInput | AdminWhereInput[]
     id?: StringFilter<"Admin"> | string
     email?: StringFilter<"Admin"> | string
-    name?: StringNullableFilter<"Admin"> | string | null
+    name?: StringFilter<"Admin"> | string
   }
 
   export type AdminOrderByWithRelationInput = {
@@ -5445,7 +5445,7 @@ export namespace Prisma {
     AND?: AdminWhereInput | AdminWhereInput[]
     OR?: AdminWhereInput[]
     NOT?: AdminWhereInput | AdminWhereInput[]
-    name?: StringNullableFilter<"Admin"> | string | null
+    name?: StringFilter<"Admin"> | string
   }, "id" | "email">
 
   export type AdminOrderByWithAggregationInput = {
@@ -5463,7 +5463,7 @@ export namespace Prisma {
     NOT?: AdminScalarWhereWithAggregatesInput | AdminScalarWhereWithAggregatesInput[]
     id?: StringWithAggregatesFilter<"Admin"> | string
     email?: StringWithAggregatesFilter<"Admin"> | string
-    name?: StringNullableWithAggregatesFilter<"Admin"> | string | null
+    name?: StringWithAggregatesFilter<"Admin"> | string
   }
 
   export type ProductCreateInput = {
@@ -5691,39 +5691,39 @@ export namespace Prisma {
   export type AdminCreateInput = {
     id?: string
     email: string
-    name?: string | null
+    name: string
   }
 
   export type AdminUncheckedCreateInput = {
     id?: string
     email: string
-    name?: string | null
+    name: string
   }
 
   export type AdminUpdateInput = {
     email?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
   }
 
   export type AdminUncheckedUpdateInput = {
     email?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
   }
 
   export type AdminCreateManyInput = {
     id?: string
     email: string
-    name?: string | null
+    name: string
   }
 
   export type AdminUpdateManyMutationInput = {
     email?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
   }
 
   export type AdminUncheckedUpdateManyInput = {
     email?: StringFieldUpdateOperationsInput | string
-    name?: NullableStringFieldUpdateOperationsInput | string | null
+    name?: StringFieldUpdateOperationsInput | string
   }
 
   export type StringFilter<$PrismaModel = never> = {

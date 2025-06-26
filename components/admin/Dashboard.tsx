@@ -6,6 +6,7 @@ import { Product } from "@/types/product"
 import MotorcyclesTable from "./MotorcyclesTable"
 import MotorcycleInquiries from "./MotorcycleInquiries"
 import InquiriesTab from "./InquiriesTab"
+import UsersTab from "./UsersTab"
 
 // Mock data - replace with actual DB data
 const dashboardStats = [
@@ -132,26 +133,7 @@ export function AdminDashboard() {
 
         {/* Users Tab */}
         {activeTab === "users" && (
-          <div className="space-y-6">
-            <div className="flex justify-between items-center">
-              <h2 className="text-2xl font-bold">Admin Users</h2>
-              <button className="btn-primary">Add Admin User</button>
-            </div>
-
-            <div className="card">
-              <div className="space-y-4">
-                {["admin@mkmgarage.com", "manager@mkmgarage.com", "sales@mkmgarage.com"].map((email, index) => (
-                  <div key={index} className="flex items-center justify-between p-4 bg-gray-700 rounded-lg">
-                    <div>
-                      <p className="font-medium">{email}</p>
-                      <p className="text-sm text-gray-400">Administrator</p>
-                    </div>
-                    <button className="text-red-500 hover:text-red-400">Remove</button>
-                  </div>
-                ))}
-              </div>
-            </div>
-          </div>
+          <UsersTab />
         )}
 
         {/* Inquiries Tab */}

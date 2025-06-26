@@ -5,6 +5,7 @@ import { useNewMotorcycleForm } from "@/hooks/useNewProductForm";
 import FeatureInputs from "./FeatureInputs";
 import { useState } from "react";
 import ImageUploadButton from "../images/components/ImageUploadButton";
+import DeleteImageButton from "../images/components/DeleteImageButton";
 
 type Feature = {
   key: string;
@@ -47,25 +48,43 @@ export default function NewMotorcycleForm() {
         <FeatureInputs features={features} setFeatures={setFeatures} />
         
         <ImageUploadButton
-        label="Upload Image (Carrousel)"
+        label="Upload Image (Gallery)"
         onUpload={(url) => setImages((prev) => [...prev, url])}
         />
 
         <ul className="text-sm text-gray-400">
-        {images.map((url) => (
-            <li key={url}>{url}</li>
-        ))}
+        {images.map((url) => {
+            const publicId = url.split("/").slice(-1)[0].split(".")[0]; // Esto saca el nombre del archivo sin extensión
+            return (
+              <li key={url} className="flex items-center gap-2">
+                <span className="text-sm text-gray-300">{url}</span>
+                <DeleteImageButton
+                  publicId={publicId}
+                  onDeleted={() => setImages((prev) => prev.filter((u) => u !== url))}
+                />
+              </li>
+            );
+          })}
         </ul>
 
         <ImageUploadButton
-        label="Upload Image (Gallery)"
+        label="Upload Image (Carrousel)"
         onUpload={(url) => setPresentationImages((prev) => [...prev, url])}
         />
 
         <ul className="text-sm text-gray-400">
-        {presentationImages.map((url) => (
-            <li key={url}>{url}</li>
-        ))}
+        {presentationImages.map((url) => {
+          const publicId = url.split("/").slice(-1)[0].split(".")[0]; // Esto saca el nombre del archivo sin extensión
+          return (
+            <li key={url} className="flex items-center gap-2">
+              <span className="text-sm text-gray-300">{url}</span>
+              <DeleteImageButton
+                publicId={publicId}
+                onDeleted={() => setPresentationImages((prev) => prev.filter((u) => u !== url))}
+              />
+            </li>
+          );
+        })}
         </ul>
 
         <Button
