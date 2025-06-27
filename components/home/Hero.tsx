@@ -36,7 +36,7 @@ export function Hero() {
 
         <div className="mt-12">
            <a href="#products-section" style={{ textDecoration: "none" }}>
-            <button className="hover:text-gray-600 text-lg px-8 py-4">
+            <button className="hover:text-orange-600 text-lg px-8 py-4">
               Discover Your Adventure
             </button>
           </a>
