@@ -2,7 +2,7 @@
 
 import { Button, Modal, Form, Input, useDisclosure, ModalContent, ModalHeader, ModalBody, ModalFooter } from "@heroui/react";
 import { useAdminFormik } from "@/hooks/useAdminFormik";
-import { useAdmins } from "@/hooks/useAdmins";  // tu hook SWR
+import useAdmins from "@/hooks/useAdmins";  // tu hook SWR
 
 export default function AdminAccessButton() {
   const formik = useAdminFormik();
