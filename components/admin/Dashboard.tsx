@@ -61,9 +61,9 @@ export function AdminDashboard() {
       fetchProducts();
     }, []);
 
-
-    console.log(products)
-
+    const handleDeleted = (id: string) => {
+    setProducts((prev) => prev.filter((p) => p.id !== id));
+  };
   const [activeTab, setActiveTab] = useState("overview")
 
   return (
@@ -128,7 +128,7 @@ export function AdminDashboard() {
 
         {/* Motorcycles Tab */}
         {activeTab === "motorcycles" && (
-          <MotorcyclesTable products={products}/>
+          <MotorcyclesTable onDeleted={handleDeleted}/>
         )}
 
         {/* Users Tab */}

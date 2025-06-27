@@ -1,7 +1,6 @@
 "use client";
 import { Admin } from '@/types/product';
-import { Button } from '@heroui/react';
-import Link from 'next/link';
+import { Card } from '@heroui/react';
 import React, { useEffect, useState } from 'react'
 import AdminAccessButton from './CreateAdminButton';
 import DeleteAdminButton from './DeleteAdminButton';
@@ -28,6 +27,10 @@ const UsersTab = () => {
     
           fetchAdmins();
         }, []);
+
+    const handleDeleted = (email: string) => {
+    setAdmins((prev) => prev.filter((p) => p.email !== email));
+  };
   return (
     <div className="space-y-6">
         <div className="flex justify-between items-center">
@@ -38,13 +41,11 @@ const UsersTab = () => {
         <div className="card">
             <div className="space-y-4">
             {admins.map((admin, index) => (
-                <div key={index} className="flex items-center justify-between p-4 bg-gray-700 rounded-lg">
-                <div>
+                <Card key={index} className="flex items-center justify-between p-4 rounded-lg">
                     <p className="font-medium">{admin.email}</p>
                     <p className="text-sm text-gray-400">{admin.name}</p>
-                </div>
-                <DeleteAdminButton email={admin.email} />
-                </div>
+                    <DeleteAdminButton email={admin.email} onDeleted={handleDeleted}/>
+                </Card>
             ))}
             </div>
         </div>

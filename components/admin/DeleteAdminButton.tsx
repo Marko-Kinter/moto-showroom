@@ -4,9 +4,10 @@ import { addToast, Button } from "@heroui/react";
 
 type Props = {
   email: string;
+  onDeleted?: (email:string) => void;
 };
 
-export default function DeleteAdminButton({ email }: Props) {
+export default function DeleteAdminButton({ email, onDeleted}: Props) {
   const handleDelete = async () => {
     const confirmed = confirm("Are you sure you want to delete this user?");
     if (!confirmed) return;
@@ -32,6 +33,7 @@ export default function DeleteAdminButton({ email }: Props) {
             timeout: 3000,
             shouldShowTimeoutProgress: true,
           });
+      onDeleted?.(email)
     } catch (err) {
       addToast({
         title: "Something went wrong. Please try again.",
