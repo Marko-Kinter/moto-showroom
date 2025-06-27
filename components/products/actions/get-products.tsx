@@ -4,6 +4,7 @@ import { Inquiry, Product } from "@/types/product";
 import { revalidatePath } from "next/cache";
 import InquiryConfirmationEmail from "@/components/emails/InquiryConfirmationEmail"
 import { Resend } from "resend";
+import AdminNotificationEmail from "@/components/emails/NewInquiryEmail";
 
 const prisma = new PrismaClient();
 const resend = new Resend(process.env.RESEND_API_KEY!);
@@ -162,12 +163,22 @@ export async function createInquirie(data: CreateInquiryInput): Promise<Inquiry>
     },
   });
 
-  await resend.emails.send({
+  const admins = await prisma.admin.findMany({ select: { email: true } });
+  const adminEmails = admins.map((a) => a.email);
+
+  const recipients = [...adminEmails];
+
+  await resend.batch.send([{
     from: 'thanks@mkmgarage.com',
     to: email,
     subject: 'Form Received! - MKM Garage',
     react: <InquiryConfirmationEmail name={name}/>,
-  });
+  },{
+    from: "no-reply@mkmgarage.com",
+    to: recipients,
+    subject: `New inquiry from ${name}`,
+    react: <AdminNotificationEmail name={name} email={email} message={message} slug={slug} phone={phone} />,
+  }]);
 
   return {
     id: newInquirie.id,
