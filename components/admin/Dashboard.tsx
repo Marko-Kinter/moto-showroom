@@ -1,8 +1,7 @@
 "use client"
 
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import { ChartBarIcon, CogIcon, UsersIcon, TruckIcon } from "@heroicons/react/24/outline"
-import { Product } from "@/types/product"
 import MotorcyclesTable from "./MotorcyclesTable"
 import MotorcycleInquiries from "./MotorcycleInquiries"
 import InquiriesTab from "./InquiriesTab"
@@ -41,6 +40,7 @@ const dashboardStats = [
 
 
 export function AdminDashboard() {
+  const [activeTab, setActiveTab] = useState("overview")
   const { isLoading } = useProducts();
 
    
@@ -56,7 +56,6 @@ export function AdminDashboard() {
       </div>
     );
   }
-  const [activeTab, setActiveTab] = useState("overview")
 
   return (
     <div className="min-h-screen py-8">
