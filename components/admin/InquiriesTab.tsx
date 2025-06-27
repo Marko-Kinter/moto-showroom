@@ -1,43 +1,69 @@
 "use client";
-import { Inquiry } from '@/types/product';
-import React, { useEffect, useState } from 'react'
+import { useInquiry } from "@/hooks/useInquiry";
+import { Button, Card, Skeleton } from "@heroui/react";
+import { useState } from "react";
 
-const InquiriesTab = () => {
-    const [inquiries, setInquiry] = useState<Inquiry[]>([]);
-    
-      useEffect(() => {
-        fetch("/api/products/inquiry")
-          .then((res) => res.json())
-          .then(setInquiry)
-          .catch((err) => console.error("Error fetching inquiries", err));
-      }, []);
+export default function InquiriesTab() {
+  const { data: inquiries, isLoading, error } = useInquiry();
+  const [openIndex, setOpenIndex] = useState<number | null>(null);
+
+  if (isLoading) {
+    return (
+      <Card className="p-4 space-y-4">
+        <Skeleton classNames={{ base: "h-6 w-1/3 rounded" }} />
+        {Array.from({ length: 3 }).map((_, idx) => (
+          <div key={idx} className="p-4 bg-gray-700 rounded-lg animate-pulse">
+            <Skeleton classNames={{ base: "h-5 w-1/2 rounded mb-1" }} />
+            <Skeleton classNames={{ base: "h-4 w-1/3 rounded mb-1" }} />
+            <Skeleton classNames={{ base: "h-4 w-1/4 rounded mb-1" }} />
+            <Skeleton classNames={{ base: "h-4 w-full rounded" }} />
+          </div>
+        ))}
+      </Card>
+    );
+  }
+
+  if (error) {
+    return <p className="text-red-500 p-4">Error loading inquiries</p>;
+  }
+
+  if (!inquiries || inquiries.length === 0) {
+    return <p className="p-4">No inquiries yet.</p>;
+  }
 
   return (
     <div className="space-y-6">
-        <h2 className="text-2xl font-bold">Recent Inquiries</h2>
-
-        <div className="card">
-            <div className="space-y-4">
-            {inquiries.map((inquiry, index) => (
-                <div key={index} className="p-4 bg-gray-700 rounded-lg">
-                <div className="flex justify-between items-start">
-                    <div>
-                    <h4 className="font-medium">{inquiry.name}</h4>
-                    <p className="text-sm text-gray-400">{inquiry.email}</p>
-                    <p className="text-sm text-gray-200">Phone: {inquiry.phone}</p>
-                    <p className="text-sm text-orange-500">{inquiry.slug}</p>
-                    </div>
-                    <div className="text-right">
-                    <p className="text-sm text-gray-400">{inquiry.createdAt}</p>
-                    <button className="text-orange-500 hover:text-orange-400 text-sm">View Details</button>
-                    </div>
-                </div>
-                </div>
-            ))}
+      <h2 className="text-2xl font-bold">Recent Inquiries</h2>
+      <div className="space-y-4">
+        {inquiries.map((inq, index) => (
+          <Card key={inq.id} className="p-4 bg-gray-700 rounded-lg">
+            <div className="flex justify-between items-start">
+              <div>
+                <h4 className="font-medium">{inq.name}</h4>
+                <p className="text-sm text-gray-400">{inq.email}</p>
+                <p className="text-sm text-gray-200">Phone: {inq.phone}</p>
+                <p className="text-sm text-orange-500">{inq.slug}</p>
+                {openIndex === index && (
+                  <p className="text-gray-200 mt-2">{inq.message}</p>
+                )}
+              </div>
+              <div className="text-right flex flex-col items-end space-y-2">
+                <p className="text-sm text-gray-400">{inq.createdAt}</p>
+                <Button
+                  variant="light"
+                  color="warning"
+                  size="sm"
+                  onPress={() =>
+                    setOpenIndex(openIndex === index ? null : index)
+                  }
+                >
+                  {openIndex === index ? "Hide Details" : "View Details"}
+                </Button>
+              </div>
             </div>
-        </div>
+          </Card>
+        ))}
+      </div>
     </div>
-  )
+  );
 }
-
-export default InquiriesTab

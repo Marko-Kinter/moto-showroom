@@ -1,6 +1,5 @@
 "use client";
 
-import { Product } from "@/types/product";
 import {
   Button,
   Table,
@@ -15,11 +14,7 @@ import Link from "next/link";
 import DeleteProductButton from "../products/components/DeletProductButton";
 import { useProducts } from "@/hooks/useProducts";
 
-type Props = {
-  onDeleted?: (id: string) => void;
-};
-
-export default function MotorcyclesTable({ onDeleted }: Props) {
+export default function MotorcyclesTable() {
   const { data: products, error, isLoading, mutate } = useProducts();
 
   // ⚠️ Cargando: mostramos Skeletons
@@ -90,9 +85,7 @@ export default function MotorcyclesTable({ onDeleted }: Props) {
                     </Link>
                     <DeleteProductButton
                       productId={product.id}
-                      onDeleted={() => {
-                        onDeleted?.(product.id);
-                      }}
+                      onDeleted={mutate}
                     />
                   </TableCell>
                 </TableRow>

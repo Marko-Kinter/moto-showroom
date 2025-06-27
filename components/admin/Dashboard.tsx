@@ -7,6 +7,8 @@ import MotorcyclesTable from "./MotorcyclesTable"
 import MotorcycleInquiries from "./MotorcycleInquiries"
 import InquiriesTab from "./InquiriesTab"
 import UsersTab from "./UsersTab"
+import { CircularProgress } from "@heroui/react"
+import { useProducts } from "@/hooks/useProducts"
 
 // Mock data - replace with actual DB data
 const dashboardStats = [
@@ -39,31 +41,21 @@ const dashboardStats = [
 
 
 export function AdminDashboard() {
-    const [products, setProducts] = useState<Product[]>([]);
+  const { isLoading } = useProducts();
 
-    useEffect(() => {
-      const fetchProducts = async () => {
-        try {
-          const res = await fetch("/api/products");
-
-          if (!res.ok) {
-            const errorText = await res.text();
-            throw new Error(`Fetch failed: ${res.status} - ${errorText}`);
-          }
-
-          const data = await res.json();
-          setProducts(data);
-        } catch (error) {
-          console.error("Error fetching products", error);
-        }
-      };
-
-      fetchProducts();
-    }, []);
-
-    const handleDeleted = (id: string) => {
-    setProducts((prev) => prev.filter((p) => p.id !== id));
-  };
+   
+    if (isLoading) {
+    return (
+      <div className="flex justify-center items-center min-h-[60vh]">
+        <CircularProgress
+          isIndeterminate
+          size="lg"
+          aria-label="Loading dashboard"
+          color="primary"
+        />
+      </div>
+    );
+  }
   const [activeTab, setActiveTab] = useState("overview")
 
   return (
@@ -122,13 +114,13 @@ export function AdminDashboard() {
             </div>
 
             {/* Motorcycle Inquiries Chart */}
-            <MotorcycleInquiries products={products} />
+            <MotorcycleInquiries />
           </div>
         )}
 
         {/* Motorcycles Tab */}
         {activeTab === "motorcycles" && (
-          <MotorcyclesTable onDeleted={handleDeleted}/>
+          <MotorcyclesTable />
         )}
 
         {/* Users Tab */}
