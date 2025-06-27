@@ -2,8 +2,12 @@ import { PrismaClient } from "@/lib/prisma/generated/prisma";
 import { notFound } from "next/navigation";
 import { Inquiry, Product } from "@/types/product";
 import { revalidatePath } from "next/cache";
+import InquiryConfirmationEmail from "@/components/emails/InquiryConfirmationEmail"
+import { Resend } from "resend";
 
 const prisma = new PrismaClient();
+const resend = new Resend(process.env.RESEND_API_KEY!);
+
 
 export async function getProductBySlug(slug: string): Promise<Product> {
   const product = await prisma.product.findUnique({
@@ -96,7 +100,6 @@ export async function deleteProduct(productId: string) {
       where: { id: productId },
     });
 
-    revalidatePath("/admin")
   } catch (error) {
     console.error("Error deleting product:", error);
     throw new Error("Failed to delete product");
@@ -157,6 +160,13 @@ export async function createInquirie(data: CreateInquiryInput): Promise<Inquiry>
       phone,
       slug,
     },
+  });
+
+  await resend.emails.send({
+    from: 'thanks@mkmgarage.com',
+    to: email,
+    subject: 'Form Received! - MKM Garage',
+    react: <InquiryConfirmationEmail name={name}/>,
   });
 
   return {
