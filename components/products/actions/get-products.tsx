@@ -192,7 +192,11 @@ export async function createInquirie(data: CreateInquiryInput): Promise<Inquiry>
 }
 
 export async function getAllInquiries(): Promise<Inquiry[]> {
-  const inquiries = await prisma.inquiry.findMany();
+  const inquiries = await prisma.inquiry.findMany({
+    orderBy: {
+      createdAt: 'desc', 
+    },
+  });
 
   return inquiries.map((inquirie) => ({
     id: inquirie.id,
