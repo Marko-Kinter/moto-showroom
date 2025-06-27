@@ -1,5 +1,5 @@
 "use client";
-import { useInquiry } from "@/hooks/useInquiry";
+import useInquiry from "@/hooks/useInquiry";
 import { Button, Card, Skeleton } from "@heroui/react";
 import { useState } from "react";
 

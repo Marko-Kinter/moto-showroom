@@ -7,7 +7,7 @@ const fetcher = (url: string) =>
     return res.json();
   });
 
-export function useSlugs() {
+export default function useSlugs() {
   return useSWR<Product[]>("/api/slugs", fetcher, {
     revalidateOnFocus: false,
     shouldRetryOnError: false,

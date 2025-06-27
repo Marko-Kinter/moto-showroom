@@ -1,4 +1,3 @@
-import Link from "next/link";
 
 export function Hero() {
   return (
@@ -36,11 +35,11 @@ export function Hero() {
         </div>
 
         <div className="mt-12">
-          <Link href={"/about"}>
+           <a href="#products-section" style={{ textDecoration: "none" }}>
             <button className="hover:text-gray-600 text-lg px-8 py-4">
               Discover Your Adventure
             </button>
-          </Link>
+          </a>
         </div>
       </div>
     </section>

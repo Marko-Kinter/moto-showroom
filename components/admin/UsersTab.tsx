@@ -3,7 +3,7 @@
 import { Card, Skeleton } from "@heroui/react";
 import AdminAccessButton from "./CreateAdminButton";
 import DeleteAdminButton from "./DeleteAdminButton";
-import { useAdmins } from "@/hooks/useAdmins";
+import useAdmins from "@/hooks/useAdmins";
 import { Admin } from "@/types/product";
 
 export default function UsersTab() {

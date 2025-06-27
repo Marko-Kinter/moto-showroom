@@ -7,7 +7,7 @@ const fetcher = (url: string) =>
     return res.json();
   });
 
-export function useProducts() {
+export default function useProducts() {
   return useSWR<Product[]>("/api/products", fetcher, {
     revalidateOnFocus: false,
     shouldRetryOnError: false,

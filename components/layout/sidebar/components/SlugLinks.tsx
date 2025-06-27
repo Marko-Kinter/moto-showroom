@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { useSlugs } from "@/hooks/useSlugs";
+import useSlugs from "@/hooks/useSlugs";
 import { Skeleton } from "@heroui/react";
 
 export default function SlugLinks({ onClose }: { onClose: () => void }) {

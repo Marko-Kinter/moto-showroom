@@ -12,7 +12,7 @@ import {
 } from "@heroui/react";
 import Link from "next/link";
 import DeleteProductButton from "../products/components/DeletProductButton";
-import { useProducts } from "@/hooks/useProducts";
+import useProducts from "@/hooks/useProducts";
 
 export default function MotorcyclesTable() {
   const { data: products, error, isLoading, mutate } = useProducts();

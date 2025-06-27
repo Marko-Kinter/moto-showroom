@@ -7,7 +7,7 @@ import MotorcycleInquiries from "./MotorcycleInquiries"
 import InquiriesTab from "./InquiriesTab"
 import UsersTab from "./UsersTab"
 import { CircularProgress } from "@heroui/react"
-import { useProducts } from "@/hooks/useProducts"
+import useProducts from "@/hooks/useProducts"
 
 // Mock data - replace with actual DB data
 const dashboardStats = [

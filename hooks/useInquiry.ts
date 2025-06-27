@@ -7,7 +7,7 @@ const fetcher = (url: string) =>
     return res.json();
   });
 
-export function useInquiry() {
+export default function useInquiry() {
   return useSWR<Inquiry[]>("/api/products/inquiry", fetcher, {
     revalidateOnFocus: false,
     shouldRetryOnError: false,

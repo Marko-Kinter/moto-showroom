@@ -7,7 +7,7 @@ const fetcher = (url: string) =>
     return res.json();
   });
 
-export function useAdmins() {
+export default function useAdmins() {
   return useSWR<Admin[]>("/api/admins", fetcher, {
     revalidateOnFocus: false,
     shouldRetryOnError: false,
